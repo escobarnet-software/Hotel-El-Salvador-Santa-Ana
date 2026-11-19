@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-type="place" data-radius="soft" data-buttons="arrow" data-motion>
+<html lang="es" data-type="place" data-radius="soft" data-buttons="solid" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -48,46 +48,38 @@
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<!-- type: place (hotel pequeño)
-     deal: hero place (impreso), nav nav-split, close close-word (momento de tipo "name"), footer footer-visit,
-           rhythm colour-band (la banda azul es la reserva), rooms on --g-alt, buttons arrow, mark leaf, la oferta strip -> habitaciones en "side" (rooms side),
-           el lugar story, grounds none
-     palette: los colores del logo del hotel (start.mjs brand: azul marino #1a3050, dorado #a8865a, fondo marfil), type garamond (EB Garamond como la serif de "El Salvador", Jost como las mayúsculas espaciadas de "HOTEL" y "SANTA ANA")
-     moments: picture-develops en la foto del mural (#hotel), se revela una vez al entrar en pantalla
+<!-- type: place (hotel pequeño) · v3, a pedido del cliente: secciones que crecen con su contenido (sin alto fijo
+     de pantalla), portada dividida, ubicación con mapa al final, pie compacto en azul y entradas suaves al hacer
+     scroll (en reposo con movimiento reducido o sin JavaScript).
+     palette: colores del logo (azul marino #1a3050, dorado #a8865a, marfil), type garamond (EB Garamond + Jost)
+     moments: picture-develops en el mural (#hotel)
      Datos reales: nombre, ciudad, 4.9 en Google con 39 reseñas, jardín, mural, tranquilo y familiar, WhatsApp.
      De ejemplo (data-assumed): tipos de habitación, capacidades y precios. Fotos: stand-ins de Wikimedia Commons. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-star" viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  </defs>
+</svg>
 
 <header class="nav nav--split">
   <p class="wrap preview-strip" data-i18n="strip">Vista previa · fotos y precios de ejemplo</p>
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
-    <a class="nav__logo" href="#top"><img class="nav__mark" src="assets/brand/mark.webp" alt="" width="246" height="323">Hotel El Salvador</a>
+    <a class="nav__logo" href="#top"><img class="nav__mark" src="assets/brand/mark-52.webp" srcset="assets/brand/mark-52.webp 52w, assets/brand/mark.webp 246w" sizes="26px" alt="" width="246" height="323" fetchpriority="high">Hotel El Salvador</a>
     <nav class="nav__links" aria-label="Principal" data-i18n-attr="aria-label:navLabel">
-      <div class="nav__item">
-        <a class="nav__link" href="#precios"><span data-i18n="navRooms">Precios</span> <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="nav__menu">
-          <div class="wrap grid">
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f121729298-500.webp" alt="" decoding="async" width="500" height="334" data-source="stand-in" data-subject="habitación sencilla"></div>
-              <span class="t-card" data-i18n="roomSingle">Habitación sencilla</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$27</span>
-            </a>
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f99550429-500.webp" alt="" decoding="async" width="500" height="333" data-source="stand-in" data-subject="habitación doble"></div>
-              <span class="t-card" data-i18n="roomDouble">Habitación doble</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$38</span>
-            </a>
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f83857421-500.webp" alt="" decoding="async" width="500" height="327" data-source="stand-in" data-subject="habitación familiar"></div>
-              <span class="t-card" data-i18n="roomFamily">Habitación familiar</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$54</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="nav__item"><a class="nav__link" href="#ubicacion" data-i18n="navWhere">Ubicación</a></div>
-      <div class="nav__item"><a class="nav__link" href="#cerca" data-i18n="navNear">Cerca</a></div>
+      <div class="nav__item"><a class="nav__link" href="#precios" data-i18n="navRooms">Precios</a></div>
       <div class="nav__item"><a class="nav__link" href="#hotel" data-i18n="navHotel">El hotel</a></div>
+      <div class="nav__item"><a class="nav__link" href="#cerca" data-i18n="navNear">Cerca</a></div>
+      <div class="nav__item"><a class="nav__link" href="#ubicacion" data-i18n="navWhere">Ubicación</a></div>
     </nav>
     <div class="nav__actions">
       <a class="lang-toggle btn btn--secondary" href="?lang=en" hreflang="en" lang="en" aria-label="Read this page in English" data-i18n-attr="aria-label:langLabel;lang:langCode;hreflang:langCode" data-i18n="langShort">EN</a>
@@ -113,7 +105,6 @@
       <li><a href="https://commons.wikimedia.org/wiki/File:Murales_de_Ataco_6.JPG">Erickssonr</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></li>
       <li><a href="https://commons.wikimedia.org/wiki/File:N1_Hotel_Bulawayo_Twin.jpg">Rufouslark</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></li>
       <li><a href="https://commons.wikimedia.org/wiki/File:Comfort_Twin_Room_in_Triple_Configuration_(21917602991).jpg">Nishimuraya Kinosaki Onsen</a>, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></li>
-      <li><a href="https://commons.wikimedia.org/wiki/File:AntiguaCasaPatio.jpg">Infrogmation photo, 1979</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>, adapted</li>
       <li><a href="https://commons.wikimedia.org/wiki/File:In_Antigua_Guatemala_(6849905758).jpg">Murray Foubister</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
       <li><a href="https://commons.wikimedia.org/wiki/File:Patio_Garden_with_blooming_plants.jpg">Almapayokels</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a></li>
       <li><a href="https://commons.wikimedia.org/wiki/File:Nicaragualeonspanishcolonial1.JPG">Serenityweb1</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a></li>
@@ -122,43 +113,33 @@
   </section>
 </main>
 
-<footer class="footer closing footer--visit" id="contact" aria-labelledby="close-h">
+<footer class="footer-v3" id="contact">
   <div class="wrap">
-    <div class="closing__cta close--word">
-      <div class="section-head--split">
-        <div><h2 id="close-h" data-i18n="closeH">Reservas por WhatsApp</h2><p class="t-lead" data-i18n="closeLine">Escríbenos al +503 7036-7823 con tus fechas.</p></div>
-        <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa data-i18n="barCta">Reservar por WhatsApp</a>
+    <div class="footer-v3__grid">
+      <div class="footer-v3__brand">
+        <img src="assets/brand/logo-light-520.webp" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="520" height="321" loading="lazy" decoding="async">
       </div>
-      <img class="close__logo" src="assets/brand/logo.webp" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="1090" height="674" loading="lazy" decoding="async">
+      <div class="footer-v3__col">
+        <h3 data-i18n="footWhere">Dónde estamos</h3>
+        <p>Santa Ana, El Salvador</p>
+        <p class="footer-v3__links"><a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener">Google Maps</a> <a href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener">Waze</a></p>
+      </div>
+      <div class="footer-v3__col">
+        <h3 data-i18n="rowBook">Reservas</h3>
+        <p><a href="https://wa.me/50370367823" data-wa>WhatsApp +503 7036-7823</a></p>
+        <p class="footer-v3__links"><a href="#disponibilidad" data-i18n="navAvail">Disponibilidad</a> <a href="#precios" data-i18n="navRooms">Precios</a></p>
+      </div>
     </div>
-    <div class="closing__links">
-      <div class="grid">
-        <div class="span-6 stack-4">
-          <address class="footer__address">Santa Ana, El Salvador</address>
-          <p class="footer-maps"><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener">Google Maps</a> <a class="link" href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener">Waze</a></p>
-        </div>
-        <div class="span-6 start-7 stack-4">
-          <h3 data-i18n="footNav">En esta página</h3>
-          <ul class="footer-nav">
-            <li><a href="#precios" data-i18n="navRooms">Precios</a></li>
-            <li><a href="#disponibilidad" data-i18n="navAvail">Disponibilidad</a></li>
-            <li><a href="#ubicacion" data-i18n="navWhere">Ubicación</a></li>
-            <li><a href="#cerca" data-i18n="navNear">Cerca</a></li>
-            <li><a href="#hotel" data-i18n="navHotel">El hotel</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__legal">
-        <span>&copy; 2026 Hotel El Salvador</span>
-        <span data-i18n="madeBy">Vista previa preparada por Escobar Net</span>
-        <a class="credits" href="credits.html" data-i18n="credits">Fotos vía Wikimedia Commons</a>
-      </div>
+    <div class="footer-v3__legal">
+      <span>&copy; 2026 Hotel El Salvador</span>
+      <span data-i18n="madeBy">Vista previa preparada por Escobar Net</span>
+      <a href="credits.html" data-i18n="credits">Fotos vía Wikimedia Commons</a>
     </div>
   </div>
 </footer>
 
 <nav class="actionbar" aria-label="Acción rápida" data-i18n-attr="aria-label:barLabel">
-  <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa data-i18n="barCta">Reservar por WhatsApp</a>
+  <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="barCta">Reservar por WhatsApp</span></a>
 </nav>
 
 <script type="module" src="assets/system.js"></script>

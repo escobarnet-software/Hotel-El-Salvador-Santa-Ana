@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-type="place" data-radius="soft" data-buttons="arrow" data-motion>
+<html lang="es" data-type="place" data-radius="soft" data-buttons="solid" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -48,14 +48,27 @@
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
-<!-- type: place (hotel pequeño)
-     deal: hero place (impreso), nav nav-split, close close-word (momento de tipo "name"), footer footer-visit,
-           rhythm colour-band (la banda azul es la reserva), rooms on --g-alt, buttons arrow, mark leaf, la oferta strip -> habitaciones en "side" (rooms side),
-           el lugar story, grounds none
-     palette: los colores del logo del hotel (start.mjs brand: azul marino #1a3050, dorado #a8865a, fondo marfil), type garamond (EB Garamond como la serif de "El Salvador", Jost como las mayúsculas espaciadas de "HOTEL" y "SANTA ANA")
-     moments: picture-develops en la foto del mural (#hotel), se revela una vez al entrar en pantalla
+<!-- type: place (hotel pequeño) · v3, a pedido del cliente: secciones que crecen con su contenido (sin alto fijo
+     de pantalla), portada dividida, ubicación con mapa al final, pie compacto en azul y entradas suaves al hacer
+     scroll (en reposo con movimiento reducido o sin JavaScript).
+     palette: colores del logo (azul marino #1a3050, dorado #a8865a, marfil), type garamond (EB Garamond + Jost)
+     moments: picture-develops en el mural (#hotel)
      Datos reales: nombre, ciudad, 4.9 en Google con 39 reseñas, jardín, mural, tranquilo y familiar, WhatsApp.
      De ejemplo (data-assumed): tipos de habitación, capacidades y precios. Fotos: stand-ins de Wikimedia Commons. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-star" viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="1"/><circle cx="17.5" cy="10.5" r="1"/><circle cx="8.5" cy="7.5" r="1"/><circle cx="6.5" cy="12.5" r="1"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.93 0 1.65-.75 1.65-1.69 0-.44-.18-.84-.44-1.13-.29-.29-.44-.65-.44-1.13a1.64 1.64 0 0 1 1.67-1.67h2c3.05 0 5.55-2.5 5.55-5.55C21.97 6.01 17.46 2 12 2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></symbol>
+  </defs>
+</svg>
 
 <header class="nav nav--split">
   <p class="wrap preview-strip" data-i18n="strip">Vista previa · fotos y precios de ejemplo</p>
@@ -63,31 +76,10 @@
     <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
     <a class="nav__logo" href="#top"><img class="nav__mark" src="assets/brand/mark-52.webp" srcset="assets/brand/mark-52.webp 52w, assets/brand/mark.webp 246w" sizes="26px" alt="" width="246" height="323" fetchpriority="high">Hotel El Salvador</a>
     <nav class="nav__links" aria-label="Principal" data-i18n-attr="aria-label:navLabel">
-      <div class="nav__item">
-        <a class="nav__link" href="#precios"><span data-i18n="navRooms">Precios</span> <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <div class="nav__menu">
-          <div class="wrap grid">
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f121729298-500.webp" alt="" loading="lazy" decoding="async" width="500" height="334" data-source="stand-in" data-subject="habitación sencilla"></div>
-              <span class="t-card" data-i18n="roomSingle">Habitación sencilla</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$27</span>
-            </a>
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f99550429-500.webp" alt="" loading="lazy" decoding="async" width="500" height="333" data-source="stand-in" data-subject="habitación doble"></div>
-              <span class="t-card" data-i18n="roomDouble">Habitación doble</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$38</span>
-            </a>
-            <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f83857421-500.webp" alt="" loading="lazy" decoding="async" width="500" height="327" data-source="stand-in" data-subject="habitación familiar"></div>
-              <span class="t-card" data-i18n="roomFamily">Habitación familiar</span>
-              <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$54</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="nav__item"><a class="nav__link" href="#ubicacion" data-i18n="navWhere">Ubicación</a></div>
-      <div class="nav__item"><a class="nav__link" href="#cerca" data-i18n="navNear">Cerca</a></div>
+      <div class="nav__item"><a class="nav__link" href="#precios" data-i18n="navRooms">Precios</a></div>
       <div class="nav__item"><a class="nav__link" href="#hotel" data-i18n="navHotel">El hotel</a></div>
+      <div class="nav__item"><a class="nav__link" href="#cerca" data-i18n="navNear">Cerca</a></div>
+      <div class="nav__item"><a class="nav__link" href="#ubicacion" data-i18n="navWhere">Ubicación</a></div>
     </nav>
     <div class="nav__actions">
       <a class="lang-toggle btn btn--secondary" href="?lang=en" hreflang="en" lang="en" aria-label="Read this page in English" data-i18n-attr="aria-label:langLabel;lang:langCode;hreflang:langCode" data-i18n="langShort">EN</a>
@@ -100,86 +92,109 @@
 </header>
 
 <main id="top">
-  <section class="hero hero--place" data-enter aria-labelledby="hero-h">
-    <picture class="hero__bg" data-phone-fill><source media="(max-width: 639px)" srcset="assets/img/photo-f51935720-780x975.webp 780w" sizes="100vw"><img src="assets/img/photo-f51935720-1280.webp" srcset="assets/img/photo-f51935720-500.webp 500w, assets/img/photo-f51935720-960.webp 960w, assets/img/photo-f51935720-1280.webp 1280w" sizes="100vw" width="1280" height="853" alt="Patio con jardín, plantas colgantes y cuadros, frente a un corredor de arcos" data-i18n-attr="alt:altHero" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="jardín del hotel"></picture>
-    <div class="wrap"><div class="hero-text">
-      <div class="hero__text">
-        <h1 id="hero-h" class="lockup"><span class="lockup__name">Hotel El Salvador</span><span class="lockup__place"><span class="sr-only">, </span>Santa Ana</span></h1>
-        <p class="hero__lead"><span class="rating"><span class="stars" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1.6l2.47 5.3 5.8.68-4.29 3.96 1.14 5.73L10 14.4l-5.12 2.87 1.14-5.73L1.73 7.58l5.8-.68z"/></svg></span> <b>4.9</b> <span data-i18n="ratingText">en Google · 39 reseñas</span></span><span class="hero__line" data-i18n="heroLine">Un hotel tranquilo y familiar en Santa Ana, con jardín y un mural.</span></p>
-        <div class="btn-row"><a class="btn btn--primary" href="#disponibilidad" data-i18n="cta">Consultar disponibilidad</a></div>
-      </div>
-    </div></div>
-  </section>
-
-  <section class="section" id="ubicacion" data-place="visit" aria-labelledby="ubicacion-h">
+  <!-- HERO: dividida. Las palabras a la izquierda, la foto redondeada a la derecha (en el teléfono, arriba) -->
+  <section class="hero hero-v3" data-enter aria-labelledby="hero-h">
     <div class="wrap">
-      <div class="section-head"><h2 id="ubicacion-h" data-i18n="whereH">Ubicación del hotel en Santa Ana</h2></div>
-      <div class="grid grid--top">
-        <div class="visit visit--card span-6">
-                    <div class="visit__cols">
-            <div class="visit__col stack-4">
-              <p class="t-label" data-i18n="whereCity">Ciudad</p>
-              <address class="visit__address">Santa Ana,<br>El Salvador</address>
-            </div>
-            <div class="visit__col stack-4">
-              <p class="t-label" data-i18n="whereOpen">Abrir la ruta en</p>
-              <div class="map-buttons">
-                <a class="btn btn--secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener">Google Maps</a>
-                <a class="btn btn--secondary" href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener">Waze</a>
-              </div>
-            </div>
+      <div class="hero-v3__grid">
+        <div class="hero-v3__text">
+          <p class="hero-v3__place"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Santa Ana, El Salvador</span></p>
+          <h1 id="hero-h">Hotel El Salvador</h1>
+          <p class="rating"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg class="star-90"><use href="#i-star"/></svg></span> <b>4.9</b> <span data-i18n="ratingText">en Google · 39 reseñas</span></p>
+          <p class="hero-v3__lead" data-i18n="heroLine">Un hotel tranquilo y familiar en Santa Ana, con jardín y un mural.</p>
+          <div class="btn-row"><a class="btn btn--primary" href="#disponibilidad" data-i18n="cta">Consultar disponibilidad</a><a class="btn btn--secondary" href="#precios" data-i18n="seePrices">Ver precios</a></div>
+          <div class="praise">
+            <p class="praise__title" data-i18n="praiseTitle">Lo que más destacan los huéspedes</p>
+            <ul class="praise__list">
+              <li><span class="praise__icon"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span><span data-i18n="praiseGarden">El jardín</span></li>
+              <li><span class="praise__icon"><svg class="ic" aria-hidden="true"><use href="#i-palette"/></svg></span><span data-i18n="praiseMural">El mural</span></li>
+              <li><span class="praise__icon"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><span data-i18n="praiseCalm">Tranquilo y familiar</span></li>
+            </ul>
           </div>
-          <ul class="visit__rows">
-            <li><span data-i18n="rowBook">Reservas</span><a class="row-link" href="https://wa.me/50370367823" data-wa>WhatsApp +503 7036-7823</a></li>
-            <li><span data-i18n="rowRating">Google</span><span><span data-i18n="rowRatingVal">4.9 de 5 · 39 reseñas</span></span></li>
-          </ul>
         </div>
-        <figure class="pl-photo pl-photo--end span-6" style="--pl-r: 1.1"><img src="assets/img/photo-f28074.webp" srcset="assets/img/photo-f28074-500.webp 500w, assets/img/photo-f28074-960.webp 960w, assets/img/photo-f28074.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="877" alt="Patio interior con césped, buganvilias y un corredor con techo de teja" data-i18n-attr="alt:altPatio" loading="lazy" decoding="async" data-source="stand-in" data-subject="patio del hotel"></figure>
+        <figure class="hero-v3__media hero-visual" data-enter-media>
+          <img src="assets/img/photo-f3136275-960.webp" srcset="assets/img/photo-f3136275-500.webp 500w, assets/img/photo-f3136275-960.webp 960w" sizes="(max-width: 1023px) 100vw, 58vw" width="960" height="720" alt="Jardín con césped, helechos, un sendero y una fuente al fondo" data-i18n-attr="alt:altFountain" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="jardín del hotel">
+          <img class="hero-v3__mark" src="assets/brand/mark-52.webp" alt="" width="52" height="68" aria-hidden="true">
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="section ground-surface" id="precios" style="--hm: 2" aria-labelledby="precios-h">
+  <!-- PRECIOS: tarjetas blancas sobre la banda crema -->
+  <section class="section v3 ground-surface" id="precios" aria-labelledby="precios-h">
     <div class="wrap">
-      <div class="grid grid--top rooms">
-        <div class="section-head rooms__head span-3">
+      <div class="v3-head reveal">
+        <div>
           <h2 id="precios-h" data-i18n="roomsH">Habitaciones y precios</h2>
           <p data-i18n="roomsLine">Tarifas por noche, en dólares. Escríbenos para el precio exacto de tus fechas.</p>
-          <p class="sample-note t-label" data-i18n="roomsNote">Precios de ejemplo</p>
         </div>
-        <a class="tile tile--portrait span-3" href="#disponibilidad" data-room="sencilla">
-          <div class="tile__media"><img src="assets/img/photo-f121729298-960.webp" srcset="assets/img/photo-f121729298-500.webp 500w, assets/img/photo-f121729298-960.webp 960w, assets/img/photo-f121729298.webp 1280w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 33vw, 600px" width="960" height="640" alt="Habitación con dos camas individuales y piso de cerámica" data-i18n-attr="alt:altSingle" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación sencilla"></div>
-          <div class="tile__head"><h3 data-i18n="roomSingle">Habitación sencilla</h3></div>
-          <p class="tile__facts" data-assumed data-i18n="factsSingle">1 persona · cama individual</p>
-          <p class="room-price" data-assumed><b>US$27</b> <span data-i18n="perNight">la noche</span></p>
-          <span class="link" data-i18n="askSingle">Consultar la sencilla</span>
+        <p class="sample-note" data-i18n="roomsNote">Precios de ejemplo</p>
+      </div>
+      <div class="rooms-v3">
+        <a class="room reveal" href="#disponibilidad" data-room="sencilla">
+          <div class="room__media"><img src="assets/img/photo-f121729298-960.webp" srcset="assets/img/photo-f121729298-500.webp 500w, assets/img/photo-f121729298-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" width="960" height="640" alt="Habitación con dos camas individuales y piso de cerámica" data-i18n-attr="alt:altSingle" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación sencilla"></div>
+          <div class="room__body">
+            <h3 data-i18n="roomSingle">Habitación sencilla</h3>
+            <ul class="room__facts" data-assumed>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span data-i18n="capSingle">1 persona</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg><span data-i18n="bedSingle">Cama individual</span></li>
+            </ul>
+            <div class="room__foot">
+              <p class="room-price" data-assumed><b>US$27</b> <span data-i18n="perNight">la noche</span></p>
+              <span class="room__cta" data-i18n="askRoom">Consultar</span>
+            </div>
+          </div>
         </a>
-        <a class="tile tile--portrait span-3" href="#disponibilidad" data-room="doble">
-          <div class="tile__media"><img src="assets/img/photo-f99550429-960.webp" srcset="assets/img/photo-f99550429-500.webp 500w, assets/img/photo-f99550429-960.webp 960w, assets/img/photo-f99550429.webp 1280w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 33vw, 600px" width="960" height="640" alt="Habitación con camas blancas, colchas tejidas y paredes en tono terracota" data-i18n-attr="alt:altDouble" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación doble"></div>
-          <div class="tile__head"><h3 data-i18n="roomDouble">Habitación doble</h3></div>
-          <p class="tile__facts" data-assumed data-i18n="factsDouble">2 personas · cama matrimonial</p>
-          <p class="room-price" data-assumed><b>US$38</b> <span data-i18n="perNight">la noche</span></p>
-          <span class="link" data-i18n="askDouble">Consultar la doble</span>
+        <a class="room room--featured reveal" href="#disponibilidad" data-room="doble">
+          <div class="room__media"><img src="assets/img/photo-f99550429-960.webp" srcset="assets/img/photo-f99550429-500.webp 500w, assets/img/photo-f99550429-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" width="960" height="640" alt="Habitación con camas blancas, colchas tejidas y paredes en tono terracota" data-i18n-attr="alt:altDouble" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación doble"></div>
+          <div class="room__body">
+            <h3 data-i18n="roomDouble">Habitación doble</h3>
+            <ul class="room__facts" data-assumed>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span data-i18n="capDouble">2 personas</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg><span data-i18n="bedDouble">Cama matrimonial</span></li>
+            </ul>
+            <div class="room__foot">
+              <p class="room-price" data-assumed><b>US$38</b> <span data-i18n="perNight">la noche</span></p>
+              <span class="room__cta" data-i18n="askRoom">Consultar</span>
+            </div>
+          </div>
         </a>
-        <a class="tile tile--portrait span-3" href="#disponibilidad" data-room="familiar">
-          <div class="tile__media"><img src="assets/img/photo-f83857421-960.webp" srcset="assets/img/photo-f83857421-500.webp 500w, assets/img/photo-f83857421-960.webp 960w, assets/img/photo-f83857421.webp 1280w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 33vw, 600px" width="960" height="628" alt="Habitación amplia con tres camas y una ventana grande" data-i18n-attr="alt:altFamily" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación familiar"></div>
-          <div class="tile__head"><h3 data-i18n="roomFamily">Habitación familiar</h3></div>
-          <p class="tile__facts" data-assumed data-i18n="factsFamily">Hasta 4 personas · 3 camas</p>
-          <p class="room-price" data-assumed><b>US$54</b> <span data-i18n="perNight">la noche</span></p>
-          <span class="link" data-i18n="askFamily">Consultar la familiar</span>
+        <a class="room reveal" href="#disponibilidad" data-room="familiar">
+          <div class="room__media"><img src="assets/img/photo-f83857421-960.webp" srcset="assets/img/photo-f83857421-500.webp 500w, assets/img/photo-f83857421-960.webp 960w" sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 400px" width="960" height="628" alt="Habitación amplia con tres camas y una ventana grande" data-i18n-attr="alt:altFamily" loading="lazy" decoding="async" data-source="stand-in" data-subject="habitación familiar"></div>
+          <div class="room__body">
+            <h3 data-i18n="roomFamily">Habitación familiar</h3>
+            <ul class="room__facts" data-assumed>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span data-i18n="capFamily">Hasta 4 personas</span></li>
+              <li><svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg><span data-i18n="bedFamily">3 camas</span></li>
+            </ul>
+            <div class="room__foot">
+              <p class="room-price" data-assumed><b>US$54</b> <span data-i18n="perNight">la noche</span></p>
+              <span class="room__cta" data-i18n="askRoom">Consultar</span>
+            </div>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="section ground-brand" id="disponibilidad" aria-labelledby="disponibilidad-h">
+  <!-- DISPONIBILIDAD: la banda azul; foto y formulario en un solo bloque redondeado, el monograma de fondo -->
+  <section class="section v3 ground-brand" id="disponibilidad" aria-labelledby="disponibilidad-h">
+    <img class="band-mark" src="assets/brand/mark.webp" alt="" width="246" height="323" aria-hidden="true" loading="lazy">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="disponibilidad-h" data-i18n="availH">Disponibilidad de habitaciones</h2>
-        <p data-i18n="availLine">Elige tus fechas y se abre WhatsApp con tu consulta lista para enviar al hotel.</p>
+      <div class="v3-head reveal">
+        <div>
+          <h2 id="disponibilidad-h" data-i18n="availH">Disponibilidad de habitaciones</h2>
+          <p data-i18n="availLine">Elige tus fechas y se abre WhatsApp con tu consulta lista para enviar al hotel.</p>
+        </div>
       </div>
-      <div class="grid grid--top booking">
-        <form class="form booking__form span-6" id="consulta" action="https://api.whatsapp.com/send" method="get" target="_blank" data-fix="Campos por revisar: {n}." novalidate>
+      <div class="booking-v3 reveal">
+        <figure class="booking-v3__media"><img src="assets/img/photo-f51935720-960.webp" srcset="assets/img/photo-f51935720-500.webp 500w, assets/img/photo-f51935720-960.webp 960w, assets/img/photo-f51935720-1280.webp 1280w" sizes="(max-width: 1023px) 100vw, 50vw" width="1280" height="853" alt="Patio con jardín, plantas colgantes y cuadros, frente a un corredor de arcos" data-i18n-attr="alt:altHero" loading="lazy" decoding="async" data-source="stand-in" data-subject="patio del hotel">
+          <ol class="steps">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span data-i18n="step1">Elige tus fechas</span></li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="step2">Se abre WhatsApp</span></li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span data-i18n="step3">El hotel te confirma</span></li>
+          </ol>
+        </figure>
+        <form class="form booking__form" id="consulta" action="https://api.whatsapp.com/send" method="get" target="_blank" data-fix="Campos por revisar: {n}." novalidate>
           <input type="hidden" name="phone" value="50370367823">
           <div class="field"><label for="f-in" data-i18n="fIn">Llegada</label>
             <input id="f-in" type="date" required autocomplete="off" aria-describedby="f-in-err">
@@ -208,97 +223,109 @@
           <noscript><p class="t-small form-note">Sin JavaScript, el botón abre el chat del hotel en WhatsApp: escribe ahí tus fechas, cuántas personas y la habitación.</p></noscript>
           <p class="t-small form-note" data-i18n="formNote">No se envía nada desde esta página: tú revisas el mensaje en WhatsApp y lo mandas.</p>
         </form>
-        <figure class="pl-photo pl-photo--end span-6" style="--pl-r: 1.3333"><img src="assets/img/photo-f3136275-960.webp" srcset="assets/img/photo-f3136275-500.webp 500w, assets/img/photo-f3136275-960.webp 960w" sizes="(max-width: 1023px) 100vw, 50vw" width="960" height="720" alt="Jardín con césped, helechos, un sendero y una fuente al fondo" data-i18n-attr="alt:altFountain" loading="lazy" decoding="async" data-source="stand-in" data-subject="jardín del hotel"></figure>
       </div>
     </div>
   </section>
 
-  <section class="section" id="cerca" style="--hm: 2" aria-labelledby="cerca-h">
+  <!-- EL HOTEL: el mural grande y dos fotos -->
+  <section class="section v3" id="hotel" aria-labelledby="hotel-h">
     <div class="wrap">
-      <div class="section-head">
-        <h2 id="cerca-h" data-i18n="nearH">Qué hay cerca del hotel</h2>
-        <p data-i18n="nearLine">Cinco visitas desde el hotel. Pregúntanos por WhatsApp cómo llegar a cada una.</p>
+      <div class="hotel-v3">
+        <div class="hotel-v3__text reveal">
+          <h2 id="hotel-h" data-i18n="hotelH">El jardín y el mural del hotel</h2>
+          <p class="hotel-v3__body" data-i18n="hotelBody">Es lo que más nombran los huéspedes en sus reseñas de Google, junto con algo que se nota al llegar: es un lugar tranquilo y familiar.</p>
+          <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener" data-i18n="hotelLink">Leer las 39 reseñas en Google</a>
+          <div class="hotel-v3__pair">
+            <figure class="rounded reveal"><img src="assets/img/photo-f4503462-500.webp" srcset="assets/img/photo-f4503462-500.webp 500w, assets/img/photo-f4503462-960.webp 960w" sizes="(max-width: 639px) 50vw, 300px" width="500" height="375" alt="Corredor con mecedora frente a un patio con palmeras y plantas" data-i18n-attr="alt:altCorridor" loading="lazy" decoding="async" data-source="stand-in" data-subject="corredor del hotel"></figure>
+            <figure class="rounded reveal"><img src="assets/img/photo-f126934419-500.webp" srcset="assets/img/photo-f126934419-500.webp 500w, assets/img/photo-f126934419-960.webp 960w" sizes="(max-width: 639px) 50vw, 300px" width="500" height="746" alt="Macetas con flores fucsia y helechos en un patio" data-i18n-attr="alt:altGarden" loading="lazy" decoding="async" data-source="stand-in" data-subject="jardín del hotel"></figure>
+          </div>
+        </div>
+        <figure class="develop hotel-v3__mural" data-moment="picture-develops"><img src="assets/img/photo-f28490155.webp" srcset="assets/img/photo-f28490155-500.webp 500w, assets/img/photo-f28490155-960.webp 960w, assets/img/photo-f28490155.webp 1280w" sizes="(max-width: 1023px) 100vw, 55vw" width="1280" height="853" alt="Mural de colores con gatos y girasoles pintado en una pared" data-i18n-attr="alt:altMural" loading="lazy" decoding="async" data-source="stand-in" data-subject="mural del hotel"></figure>
       </div>
-      <ul class="near">
-        <li><a class="tile" href="https://www.google.com/maps/search/?api=1&amp;query=Catedral+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
-          <div class="tile__media"><img src="assets/img/photo-f26840562-960.webp" srcset="assets/img/photo-f26840562-500.webp 500w, assets/img/photo-f26840562-960.webp 960w, assets/img/photo-f26840562.webp 1280w" sizes="(max-width: 639px) 170vw, 480px" width="500" height="375" alt="Fachada blanca neogótica de la Catedral de Santa Ana" data-i18n-attr="alt:altCathedral" loading="lazy" decoding="async" data-source="stand-in" data-subject="Catedral de Santa Ana" style="--pos: 50% 20%"></div>
-          <h3>Catedral de Santa Ana</h3>
-          <p data-i18n="nearCathedral">Catedral neogótica blanca, frente al Parque Libertad.</p></a></li>
-        <li><a class="tile" href="https://www.google.com/maps/search/?api=1&amp;query=Teatro+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
-          <div class="tile__media"><img src="assets/img/photo-f28362802-960.webp" srcset="assets/img/photo-f28362802-360.webp 360w, assets/img/photo-f28362802-500.webp 500w, assets/img/photo-f28362802-960.webp 960w" sizes="(max-width: 639px) 90vw, 480px" width="500" height="360" alt="Edificio verde claro del Teatro de Santa Ana con columnas y arcos" data-i18n-attr="alt:altTheatre" loading="lazy" decoding="async" data-source="stand-in" data-subject="Teatro de Santa Ana"></div>
-          <h3>Teatro de Santa Ana</h3>
-          <p data-i18n="nearTheatre">Teatro de inicios del siglo XX, en el mismo parque.</p></a></li>
-        <li><a class="tile" href="https://www.google.com/maps/search/?api=1&amp;query=Parque+Libertad+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
-          <div class="tile__media"><img src="assets/img/photo-f28364149-960.webp" srcset="assets/img/photo-f28364149-360.webp 360w, assets/img/photo-f28364149-500.webp 500w, assets/img/photo-f28364149-960.webp 960w" sizes="(max-width: 639px) 90vw, 480px" width="500" height="375" alt="Kiosco del Parque Libertad entre árboles" data-i18n-attr="alt:altPark" loading="lazy" decoding="async" data-source="stand-in" data-subject="Parque Libertad"></div>
-          <h3>Parque Libertad</h3>
-          <p data-i18n="nearPark">La plaza central de la ciudad, con su kiosco.</p></a></li>
-        <li><a class="tile" href="https://www.google.com/maps/search/?api=1&amp;query=Volcan+de+Santa+Ana" target="_blank" rel="noopener">
-          <div class="tile__media"><img src="assets/img/photo-f194311767-960.webp" srcset="assets/img/photo-f194311767-360.webp 360w, assets/img/photo-f194311767-500.webp 500w, assets/img/photo-f194311767-960.webp 960w" sizes="(max-width: 639px) 90vw, 480px" width="500" height="375" alt="Laguna verde dentro del cráter del Volcán de Santa Ana" data-i18n-attr="alt:altVolcano" loading="lazy" decoding="async" data-source="stand-in" data-subject="Volcán de Santa Ana"></div>
-          <h3 data-i18n="nameVolcano">Volcán de Santa Ana</h3>
-          <p data-i18n="nearVolcano">El volcán más alto del país, con una laguna verde en el cráter.</p></a></li>
-        <li><a class="tile" href="https://www.google.com/maps/search/?api=1&amp;query=Lago+de+Coatepeque" target="_blank" rel="noopener">
-          <div class="tile__media"><img src="assets/img/photo-f56641573-960.webp" srcset="assets/img/photo-f56641573-360.webp 360w, assets/img/photo-f56641573-500.webp 500w, assets/img/photo-f56641573-960.webp 960w" sizes="(max-width: 639px) 90vw, 480px" width="500" height="375" alt="Lago de Coatepeque, azul, rodeado de cerros verdes" data-i18n-attr="alt:altLake" loading="lazy" decoding="async" data-source="stand-in" data-subject="Lago de Coatepeque"></div>
-          <h3 data-i18n="nameLake">Lago de Coatepeque</h3>
-          <p data-i18n="nearLake">Lago azul dentro de una caldera volcánica.</p></a></li>
+    </div>
+  </section>
+
+  <!-- CERCA: cinco lugares -->
+  <section class="section v3 ground-surface" id="cerca" aria-labelledby="cerca-h">
+    <div class="wrap">
+      <div class="v3-head reveal">
+        <div>
+          <h2 id="cerca-h" data-i18n="nearH">Qué hay cerca del hotel</h2>
+          <p data-i18n="nearLine">Cinco visitas desde el hotel. Pregúntanos por WhatsApp cómo llegar a cada una.</p>
+        </div>
+      </div>
+      <ul class="near-v3">
+        <li class="reveal"><a class="place place--big" href="https://www.google.com/maps/search/?api=1&amp;query=Catedral+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
+          <img src="assets/img/photo-f26840562-960.webp" srcset="assets/img/photo-f26840562-500.webp 500w, assets/img/photo-f26840562-960.webp 960w, assets/img/photo-f26840562.webp 1280w" sizes="(max-width: 639px) 100vw, 40vw" width="960" height="720" alt="Fachada blanca neogótica de la Catedral de Santa Ana" data-i18n-attr="alt:altCathedral" loading="lazy" decoding="async" data-source="stand-in" data-subject="Catedral de Santa Ana">
+          <span class="place__text"><span class="place__name">Catedral de Santa Ana</span><span class="place__line" data-i18n="nearCathedral">Catedral neogótica blanca, frente al Parque Libertad.</span></span></a></li>
+        <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Teatro+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
+          <img src="assets/img/photo-f28362802-500.webp" srcset="assets/img/photo-f28362802-360.webp 360w, assets/img/photo-f28362802-500.webp 500w, assets/img/photo-f28362802-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="360" alt="Edificio verde claro del Teatro de Santa Ana con columnas y arcos" data-i18n-attr="alt:altTheatre" loading="lazy" decoding="async" data-source="stand-in" data-subject="Teatro de Santa Ana">
+          <span class="place__text"><span class="place__name">Teatro de Santa Ana</span><span class="place__line" data-i18n="nearTheatre">Teatro de inicios del siglo XX, en el mismo parque.</span></span></a></li>
+        <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Parque+Libertad+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
+          <img src="assets/img/photo-f28364149-500.webp" srcset="assets/img/photo-f28364149-360.webp 360w, assets/img/photo-f28364149-500.webp 500w, assets/img/photo-f28364149-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Kiosco del Parque Libertad entre árboles" data-i18n-attr="alt:altPark" loading="lazy" decoding="async" data-source="stand-in" data-subject="Parque Libertad">
+          <span class="place__text"><span class="place__name">Parque Libertad</span><span class="place__line" data-i18n="nearPark">La plaza central de la ciudad, con su kiosco.</span></span></a></li>
+        <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Volcan+de+Santa+Ana" target="_blank" rel="noopener">
+          <img src="assets/img/photo-f194311767-500.webp" srcset="assets/img/photo-f194311767-360.webp 360w, assets/img/photo-f194311767-500.webp 500w, assets/img/photo-f194311767-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Laguna verde dentro del cráter del Volcán de Santa Ana" data-i18n-attr="alt:altVolcano" loading="lazy" decoding="async" data-source="stand-in" data-subject="Volcán de Santa Ana">
+          <span class="place__text"><span class="place__name" data-i18n="nameVolcano">Volcán de Santa Ana</span><span class="place__line" data-i18n="nearVolcano">El volcán más alto del país, con una laguna verde en el cráter.</span></span></a></li>
+        <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Lago+de+Coatepeque" target="_blank" rel="noopener">
+          <img src="assets/img/photo-f56641573-500.webp" srcset="assets/img/photo-f56641573-360.webp 360w, assets/img/photo-f56641573-500.webp 500w, assets/img/photo-f56641573-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Lago de Coatepeque, azul, rodeado de cerros verdes" data-i18n-attr="alt:altLake" loading="lazy" decoding="async" data-source="stand-in" data-subject="Lago de Coatepeque">
+          <span class="place__text"><span class="place__name" data-i18n="nameLake">Lago de Coatepeque</span><span class="place__line" data-i18n="nearLake">Lago azul dentro de una caldera volcánica.</span></span></a></li>
       </ul>
     </div>
   </section>
 
-  <section class="section" id="hotel" aria-labelledby="hotel-h">
+  <!-- UBICACIÓN: el mapa y cómo llegar -->
+  <section class="section v3" id="ubicacion" aria-labelledby="ubicacion-h">
     <div class="wrap">
-      <div class="grid grid--top story">
-        <div class="story__text span-6">
-          <h2 id="hotel-h" data-i18n="hotelH">El jardín y el mural del hotel</h2>
-          <p class="story__body" data-i18n="hotelBody">Es lo que más nombran los huéspedes en sus reseñas de Google, junto con algo que se nota al llegar: es un lugar tranquilo y familiar.</p>
-          <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener" data-i18n="hotelLink">Leer las 39 reseñas en Google</a>
-          <div class="story__pair">
-            <figure class="story__photo"><img src="assets/img/photo-f4503462-500.webp" srcset="assets/img/photo-f4503462-500.webp 500w, assets/img/photo-f4503462-960.webp 960w" sizes="(max-width: 639px) 50vw, 240px" width="500" height="375" alt="Corredor con mecedora frente a un patio con palmeras y plantas" data-i18n-attr="alt:altCorridor" loading="lazy" decoding="async" data-source="stand-in" data-subject="corredor del hotel"></figure>
-            <figure class="story__photo"><img src="assets/img/photo-f126934419-500.webp" srcset="assets/img/photo-f126934419-500.webp 500w, assets/img/photo-f126934419-960.webp 960w" sizes="(max-width: 639px) 50vw, 240px" width="500" height="746" alt="Macetas con flores fucsia y helechos en un patio" data-i18n-attr="alt:altGarden" loading="lazy" decoding="async" data-source="stand-in" data-subject="jardín del hotel"></figure>
+      <div class="where-v3">
+        <div class="where-v3__card reveal">
+          <h2 id="ubicacion-h" data-i18n="whereH">Cómo llegar al hotel</h2>
+          <p class="where-v3__city"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>Santa Ana, El Salvador</p>
+          <p class="where-v3__line" data-i18n="whereLine">Abre la ruta en tu aplicación favorita o escríbenos y te explicamos cómo llegar.</p>
+          <div class="where-v3__buttons">
+            <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="openMaps">Abrir en Google Maps</span></a>
+            <a class="btn btn--secondary" href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-nav"/></svg><span data-i18n="openWaze">Abrir en Waze</span></a>
           </div>
+          <ul class="where-v3__rows">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span><span class="where-v3__label" data-i18n="rowBook">Reservas</span><a href="https://wa.me/50370367823" data-wa>WhatsApp +503 7036-7823</a></span></li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg><span><span class="where-v3__label" data-i18n="rowRating">Google</span><span data-i18n="rowRatingVal">4.9 de 5 · 39 reseñas</span></span></li>
+          </ul>
         </div>
-        <figure class="develop span-6 start-7" data-moment="picture-develops"><img src="assets/img/photo-f28490155.webp" srcset="assets/img/photo-f28490155-500.webp 500w, assets/img/photo-f28490155-960.webp 960w, assets/img/photo-f28490155.webp 1280w" sizes="(max-width: 1023px) 100vw, 60vw" width="1280" height="853" alt="Mural de colores con gatos y girasoles pintado en una pared" data-i18n-attr="alt:altMural" loading="lazy" decoding="async" data-source="stand-in" data-subject="mural del hotel"></figure>
+        <div class="where-v3__map reveal">
+          <iframe title="Mapa: Hotel El Salvador en Santa Ana" data-i18n-attr="title:mapTitle" src="https://maps.google.com/maps?q=Hotel%20El%20Salvador%20Santa%20Ana%20El%20Salvador&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="footer closing footer--visit" id="contact" aria-labelledby="close-h">
+<footer class="footer-v3" id="contact">
   <div class="wrap">
-    <div class="closing__cta close--word">
-      <div class="section-head--split">
-        <div><h2 id="close-h" data-i18n="closeH">Reservas por WhatsApp</h2><p class="t-lead" data-i18n="closeLine">Escríbenos al +503 7036-7823 con tus fechas.</p></div>
-        <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa data-i18n="barCta">Reservar por WhatsApp</a>
+    <div class="footer-v3__grid">
+      <div class="footer-v3__brand">
+        <img src="assets/brand/logo-light-520.webp" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="520" height="321" loading="lazy" decoding="async">
       </div>
-      <img class="close__logo" src="assets/brand/logo-480.webp" srcset="assets/brand/logo-480.webp 480w, assets/brand/logo.webp 1090w" sizes="(max-width: 639px) 230px, 520px" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="1090" height="674" loading="lazy" decoding="async">
+      <div class="footer-v3__col">
+        <h3 data-i18n="footWhere">Dónde estamos</h3>
+        <p>Santa Ana, El Salvador</p>
+        <p class="footer-v3__links"><a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener">Google Maps</a> <a href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener">Waze</a></p>
+      </div>
+      <div class="footer-v3__col">
+        <h3 data-i18n="rowBook">Reservas</h3>
+        <p><a href="https://wa.me/50370367823" data-wa>WhatsApp +503 7036-7823</a></p>
+        <p class="footer-v3__links"><a href="#disponibilidad" data-i18n="navAvail">Disponibilidad</a> <a href="#precios" data-i18n="navRooms">Precios</a></p>
+      </div>
     </div>
-    <div class="closing__links">
-      <div class="grid">
-        <div class="span-6 stack-4">
-          <address class="footer__address">Santa Ana, El Salvador</address>
-          <p class="footer-maps"><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+El+Salvador+Santa+Ana" target="_blank" rel="noopener">Google Maps</a> <a class="link" href="https://waze.com/ul?q=Hotel%20El%20Salvador%20Santa%20Ana" target="_blank" rel="noopener">Waze</a></p>
-        </div>
-        <div class="span-6 start-7 stack-4">
-          <h3 data-i18n="footNav">En esta página</h3>
-          <ul class="footer-nav">
-            <li><a href="#precios" data-i18n="navRooms">Precios</a></li>
-            <li><a href="#disponibilidad" data-i18n="navAvail">Disponibilidad</a></li>
-            <li><a href="#ubicacion" data-i18n="navWhere">Ubicación</a></li>
-            <li><a href="#cerca" data-i18n="navNear">Cerca</a></li>
-            <li><a href="#hotel" data-i18n="navHotel">El hotel</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__legal">
-        <span>&copy; 2026 Hotel El Salvador</span>
-        <span data-i18n="madeBy">Vista previa preparada por Escobar Net</span>
-        <a class="credits" href="credits.html" data-i18n="credits">Fotos vía Wikimedia Commons</a>
-      </div>
+    <div class="footer-v3__legal">
+      <span>&copy; 2026 Hotel El Salvador</span>
+      <span data-i18n="madeBy">Vista previa preparada por Escobar Net</span>
+      <a href="credits.html" data-i18n="credits">Fotos vía Wikimedia Commons</a>
     </div>
   </div>
 </footer>
 
 <nav class="actionbar" aria-label="Acción rápida" data-i18n-attr="aria-label:barLabel">
-  <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa data-i18n="barCta">Reservar por WhatsApp</a>
+  <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg><span data-i18n="barCta">Reservar por WhatsApp</span></a>
 </nav>
 
 <script type="module" src="assets/system.js"></script>

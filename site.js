@@ -18,7 +18,16 @@ const EN = {
   altHero: 'Garden patio with hanging plants and paintings, in front of an arched walkway',
   ratingText: 'on Google · 39 reviews',
   heroLine: 'A quiet, family-friendly hotel in Santa Ana, with a garden and a mural.',
-  whereH: 'Where the hotel is in Santa Ana', whereCity: 'City', whereOpen: 'Get the route in',
+  whereH: 'How to get to the hotel',
+  whereLine: 'Open the route in your favourite app, or message us and we will explain how to get here.',
+  openMaps: 'Open in Google Maps', openWaze: 'Open in Waze', mapTitle: 'Map: Hotel El Salvador in Santa Ana',
+  footWhere: 'Where we are',
+  seePrices: 'See prices',
+  praiseTitle: 'What guests praise most', praiseGarden: 'The garden', praiseMural: 'The mural', praiseCalm: 'Quiet and family-friendly',
+  capSingle: '1 guest', capDouble: '2 guests', capFamily: 'Up to 4 guests',
+  bedSingle: 'Single bed', bedDouble: 'Double bed', bedFamily: '3 beds',
+  askRoom: 'Ask',
+  step1: 'Pick your dates', step2: 'WhatsApp opens', step3: 'The hotel confirms', whereCity: 'City', whereOpen: 'Get the route in',
   rowBook: 'Bookings', rowRating: 'Google', rowRatingVal: '4.9 out of 5 · 39 reviews',
   altPatio: 'Inner courtyard with a lawn, bougainvillea and a tiled-roof walkway',
   roomsH: 'Rooms and prices',
@@ -282,3 +291,24 @@ const fromUrl = new URLSearchParams(location.search).get('lang');
 // Spanish first (the hotel's own language); English only when the visitor chose it or the link says ?lang=en
 const start = fromUrl || stored() || 'es';
 setLang(start === 'en' ? 'en' : 'es', Boolean(fromUrl));
+
+/* ---------------------------------------------------------------- reveal on scroll (the client asked for more motion)
+   Only with IntersectionObserver and no reduced-motion preference; everything is visible otherwise. Each block
+   enters once, and blocks entering together are staggered a little, never a queue. */
+(function reveal() {
+  const items = [...document.querySelectorAll('.reveal')];
+  if (!items.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  html.classList.add('rv-on');
+  const io = new IntersectionObserver(entries => {
+    const coming = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
+    coming.forEach((e, i) => {
+      e.target.style.setProperty('--rv-delay', `${Math.min(i, 4) * 70}ms`);
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  items.forEach(el => io.observe(el));
+  // printing shows everything
+  window.addEventListener('beforeprint', () => items.forEach(el => el.classList.add('is-in')));
+})();
