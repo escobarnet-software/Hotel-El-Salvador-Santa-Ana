@@ -1,0 +1,273 @@
+/* Hotel El Salvador: page CSS on top of the kit (assets/system.css). Only what the kit lacks. */
+
+/* the preview strip: one quiet line at the very top of the fixed header, so --nav grows by its height */
+:root { --strip: 28px; --nav: calc(72px + var(--strip)); }
+@media (max-width: 639px) { :root { --nav: calc(56px + var(--strip)); } }
+.nav { display: flex; flex-direction: column; }
+.nav > .nav__bar { flex: 1 1 auto; height: auto; min-height: 0; }
+/* the strip's ground is the header's own ::before (a ground, full width); its words sit on the .wrap */
+.nav::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--strip); background: var(--p-surface); border-bottom: 1px solid var(--line); pointer-events: none; }
+.preview-strip {
+  position: relative; flex: none; height: var(--strip); margin-block: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--p-ink); font: 500 var(--t-label)/1 var(--font-text); letter-spacing: 0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* the ES/EN switch: one 44px control in the bar, the secondary look; hidden without script (nothing to switch) */
+.lang-toggle {
+  display: none; align-items: center; justify-content: center; min-width: 44px; height: 44px; padding: 0 var(--s-3);
+  border: 1px solid var(--line-strong); border-radius: var(--r-btn, 2px); background: var(--bg); color: var(--ink);
+  font: 600 14px/1 var(--font-text); letter-spacing: 0.04em; cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.js .lang-toggle { display: inline-flex; }
+@media (hover: hover) and (pointer: fine) { .lang-toggle:hover { background: color-mix(in oklab, var(--bg) 92%, var(--ink)); } }
+.lang-toggle:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .lang-toggle:hover { border-color: var(--ink); } }
+@media (max-width: 1023px) {
+  .nav:not(.is-open) .nav__actions { display: flex; margin-left: auto; gap: var(--s-2); }
+  .nav:not(.is-open) .nav__actions > .lang-toggle { display: none; }
+  .js .nav:not(.is-open) .nav__actions > .lang-toggle { display: inline-flex; }
+  .nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: 0; }
+}
+@media (max-width: 639px) {
+  :root:has(> body > nav.actionbar) .nav:not(.is-open) .nav__actions { display: flex; }
+  :root:has(> body > nav.actionbar) .nav:not(.is-open) .nav__actions > .btn { display: none; }
+  .nav.is-open .nav__actions > .lang-toggle { display: none; }
+}
+
+/* hero: the rating line above the sub-line */
+.h1-sep { color: var(--muted); padding-inline: 0.12em; }
+.hero--place .hero__lead { display: grid; gap: var(--s-2); }
+.rating { display: inline-flex; align-items: baseline; gap: 6px; font-size: var(--t-body); color: var(--ink); }
+.rating b { font-weight: 600; }
+.rating__stars { color: #a86b00; font-size: 18px; line-height: 1; }
+
+/* visit: two map buttons side by side, the WhatsApp row a real 44px link */
+.map-buttons { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.map-buttons .btn { padding-inline: var(--s-4); }
+html[data-buttons="arrow"] .map-buttons .btn--secondary {
+  text-decoration: none; border: 1px solid var(--line-strong); background: var(--p-bg); height: 44px;
+}
+html[data-buttons="arrow"] .map-buttons .btn--secondary:hover { border-color: var(--ink); background: var(--p-bg); }
+.row-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; text-decoration: underline;
+  text-underline-offset: 4px; text-decoration-color: var(--line-strong); transition: text-decoration-color var(--dur) var(--ease); }
+.row-link:hover { text-decoration-color: currentColor; }
+#ubicacion .visit h2 { font-size: var(--t-h2); }
+
+/* rooms: the head as the first cell, three rooms on span-3 (dealt "side") */
+.rooms > .rooms__head { margin: 0 !important; align-content: start; align-self: stretch; height: 100%; }
+.rooms__head p { font-size: var(--t-body); }
+.sample-note { margin: 0; color: #7a4e00; font-size: var(--t-label) !important; font-weight: 600; }
+.tile .tile__head h3 { font-size: 20px; line-height: 28px; }
+.tile .tile__facts { font-size: var(--t-body); margin-top: calc(-1 * var(--s-3)); }
+.room-price { margin: 0; font-size: var(--t-body); font-variant-numeric: tabular-nums; }
+.room-price b { font: 400 28px/1 var(--font-display); letter-spacing: -0.01em; margin-right: 4px; }
+.tile > .link { justify-self: start; }
+
+/* booking: the photograph and the form on --g-alt, the same height */
+.booking__form { background: var(--p-surface); padding: var(--s-7); align-self: stretch; align-content: start; }
+.booking__form .field :is(input, select) { font-size: 16px; background: var(--p-bg); min-height: 48px; }
+.booking__form input[type="date"] { -webkit-appearance: none; appearance: none; display: block; width: 100%; min-width: 0; text-align: left; }
+.booking__form input[type="date"]::-webkit-date-and-time-value { text-align: left; }
+.booking .pl-photo { align-self: stretch; }
+.nights { margin: 0; min-height: 0; font-size: var(--t-small); color: var(--ink); }
+.nights:empty { display: none; }
+.form-note { color: var(--muted); margin: 0; }
+.booking__form .btn-row .btn { width: 100%; justify-content: center; }
+
+/* near: five places across the column, 1:1 frames */
+.near { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-5); }
+.near .tile { --tile-ratio: 4 / 5; }
+.near .tile h3 { font: 500 18px/26px var(--font-text); margin: 0; }
+.near .tile p { margin: 0; margin-top: calc(-1 * var(--s-2)); font-size: var(--t-body); line-height: 1.5; color: var(--ink); }
+.near .tile__media > img { object-position: var(--pos, 50% 50%); }
+
+/* the house: text left, the mural that develops on the right */
+.story__text { display: grid; gap: var(--s-5); align-content: start; }
+.story__text h2 { margin-bottom: var(--s-2); }
+.story__body { font-size: 20px; line-height: 30px; margin: 0; max-width: 38ch; }
+.story__text .link { justify-self: start; }
+.develop { margin: 0; overflow: hidden; height: min(560px, calc(100svh - var(--padt) - var(--padb) - var(--bar))); }
+.develop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* footer */
+.close__word { font-size: clamp(34px, 8.4vw, 122px); line-height: 1.08; overflow: visible; padding-bottom: 0.04em; }
+.footer__address { font-size: 32px; line-height: 40px; }
+.footer-maps { display: flex; gap: var(--s-5); flex-wrap: wrap; margin: 0; }
+.footer-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-5); }
+.footer-nav a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line-strong); }
+.footer-nav a:hover { text-decoration-color: currentColor; }
+.footer__legal { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); align-items: center; font-size: var(--t-small); color: var(--muted); }
+
+/* tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .rooms__head { grid-column: 1 / -1; }
+  .rooms > .tile { grid-column: auto / span 4; }
+  .near { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .near .tile { --tile-ratio: 4 / 3; }
+  .story__text, .develop { grid-column: 1 / -1; }
+  .develop { height: auto; aspect-ratio: 16 / 10; }
+  .booking > .booking__form, .booking > .pl-photo { grid-column: auto / span 6; }
+  .booking .pl-photo > img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+  .booking__form { padding: var(--s-5); grid-template-columns: minmax(0, 1fr); }
+  .booking__form > .field { grid-column: 1 / -1; }
+  [data-place="visit"] .grid > .pl-photo:last-child > img { max-height: 36svh; }
+}
+
+/* phone */
+@media (max-width: 639px) {
+  .preview-strip { font-size: 12.5px; display: block; line-height: var(--strip); text-align: center; }
+  .rooms__head { grid-column: 1 / -1; }
+  .rooms > .tile { grid-column: 1 / -1; }
+  .near { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5) var(--s-3); }
+  .near > li:first-child { grid-column: 1 / -1; }
+  .near > li:first-child .tile { --tile-ratio: 16 / 9; }
+  .near .tile { --tile-ratio: 1 / 1; gap: var(--s-3); }
+  .near .tile h3 { font-size: 16px; line-height: 22px; }
+  .near .tile p { font-size: 15px; line-height: 1.45; }
+  .story__text, .develop { grid-column: 1 / -1; }
+  .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-6); }
+  .story__body { font-size: 18px; line-height: 28px; }
+  .booking > * { grid-column: 1 / -1; }
+  .booking .pl-photo { display: none; }
+  .booking__form { padding: var(--s-5); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .booking__form > .field:nth-of-type(n+3) { grid-column: 1 / -1; }
+  .footer__address { font-size: 26px; line-height: 32px; }
+  .room-price b { font-size: 24px; }
+}
+@media (max-width: 359px) {
+  .booking__form { grid-template-columns: minmax(0, 1fr); }
+  .booking__form > .field { grid-column: 1 / -1; }
+  .near { grid-template-columns: minmax(0, 1fr); }
+  .preview-strip { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-toggle { transition: none; }
+  .lang-toggle:active { transform: none; }
+}
+
+/* round 2 */
+.nowrap { white-space: nowrap; }
+#ubicacion .visit--card { align-self: stretch; grid-template-rows: auto auto 1fr; }
+#ubicacion .visit__rows { align-self: end; }
+.closing__links ul.footer-nav { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0 var(--s-5); }
+.closing__links ul.footer-nav > li { margin: 0; }
+@media (max-width: 1023px) { #ubicacion .visit--card { grid-template-rows: none; } }
+
+/* round 3: the phone */
+.tile h3, .near h3, .tile__facts { hyphens: manual; -webkit-hyphens: manual; }
+@media (max-width: 639px) {
+  /* rooms: one row each, the photograph left and the words right, so the three fit one screen */
+  .rooms.grid > .tile.span-3 {
+    grid-column: 1 / -1; grid-template-columns: 128px minmax(0, 1fr); column-gap: var(--s-4); row-gap: var(--s-1);
+    align-items: start; padding-bottom: var(--s-4); border-bottom: 1px solid var(--line);
+  }
+  .rooms.grid > .tile.span-3:last-child { border-bottom: 0; padding-bottom: 0; }
+  .rooms.grid > .tile > .tile__media { grid-row: 1 / span 4; --tile-ratio: 4 / 5; }
+  .rooms.grid > .tile .tile__head h3 { font-size: 18px; line-height: 24px; }
+  .rooms.grid > .tile .tile__facts { margin-top: 0; font-size: 15px; line-height: 1.4; }
+  .rooms.grid > .tile .room-price b { font-size: 22px; }
+  .rooms.grid > .tile > .link { min-height: 44px; }
+  .rooms { row-gap: var(--s-4); }
+  .rooms__head { gap: var(--s-3); }
+
+  /* visit: label and value on one line, the photograph capped */
+  .visit__rows > li { flex-direction: row; align-items: center; justify-content: space-between; padding-block: 0; }
+  .visit__rows > li > :last-child { text-align: right; }
+  #ubicacion .visit__cols { row-gap: var(--s-4); }
+  #ubicacion .visit__col.stack-4 > * + * { margin-top: var(--s-2); }
+  [data-place="visit"] .grid > .pl-photo:last-child > img { max-height: 34svh; }
+
+  /* the form: date fields keep their date readable */
+  .booking__form input[type="date"] { padding-inline: 10px; font-size: 16px; }
+  .booking__form { row-gap: var(--s-3); }
+  #disponibilidad .section-head { margin-bottom: var(--s-5); }
+
+  /* near: two screens, the cathedral wide on top */
+  .near > li:first-child .tile { --tile-ratio: 4 / 3; }
+
+  /* the house: the mural a little shorter */
+  .develop { aspect-ratio: 16 / 10; margin-top: var(--s-5); }
+  .story__text { gap: var(--s-4); }
+}
+@media (max-width: 639px) {
+  .rooms.grid > .tile.span-3 { grid-template-columns: 104px minmax(0, 1fr); padding-bottom: var(--s-3); }
+  .rooms.grid > .tile > .tile__media { --tile-ratio: 3 / 4; }
+  .rooms__head p { font-size: 15px; line-height: 1.45; }
+  .rooms__head h2 { margin: 0; }
+  .rooms { row-gap: var(--s-3); }
+  [data-place="visit"] .grid > .pl-photo:last-child > img { max-height: 30svh; }
+  .booking__form { row-gap: var(--s-2); }
+  .booking__form .field { gap: 4px; }
+}
+
+/* round 4 (gate 1) */
+.rooms.grid > .tile > :not(.tile__media) { min-width: 0; }
+@media (max-width: 639px) {
+  /* rooms take two phone screens: each room whole, the photograph wide on top */
+  .rooms.grid > .tile.span-3 { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-3); border-bottom: 0; padding-bottom: 0; }
+  .rooms.grid > .tile > .tile__media { grid-row: auto; --tile-ratio: 16 / 10; }
+  .rooms.grid > .tile .tile__facts { margin-top: calc(-1 * var(--s-2)); font-size: 16px; }
+  .rooms { row-gap: var(--s-6); }
+  .rooms__head p { font-size: 16px; line-height: 1.5; }
+  /* near: two screens, every place tall enough to read as a place */
+  .near > li:first-child .tile { --tile-ratio: 4 / 3; }
+  .near .tile { --tile-ratio: 4 / 5; }
+  .near { row-gap: var(--s-6); }
+  .booking .pl-photo { display: none; }
+}
+@media (max-width: 639px) {
+  [data-place="visit"] .grid > .pl-photo:last-child > img { max-height: 25svh; }
+  #ubicacion .section-head { margin-bottom: var(--s-5); }
+}
+
+@media (max-width: 639px) {
+  .near > li:first-child .tile { --tile-ratio: 1 / 1; }
+  .near .tile { --tile-ratio: 3 / 4; }
+}
+@media (max-width: 639px) {
+  .near > li:first-child .tile { --tile-ratio: 4 / 5; }
+  .near .tile { --tile-ratio: 2 / 3; }
+}
+
+@media (max-width: 1023px) { .rooms > .rooms__head { height: auto; align-self: start; } }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .rooms.grid > .tile.span-3 { grid-column: auto / span 4 !important; }
+}
+@media (min-width: 640px) and (max-width: 1023px) and (orientation: portrait) {
+  .rooms.grid > .tile.span-3 { --tile-ratio: 3 / 5; }
+}
+
+/* polish (emil-design-eng) */
+:root { --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1); }
+.booking__form .field :is(input, select) { transition: border-color 150ms ease, box-shadow 150ms ease, background-color 400ms ease; }
+.booking__form .field :is(input, select):focus { border-color: var(--ink); }
+/* the room chosen from a room's link: its field answers once, so the visitor sees the form heard the click */
+.booking__form select.is-picked { background-color: color-mix(in oklab, var(--p-bg) 70%, #e3c97a); transition-duration: 0ms; }
+.lang-toggle { -webkit-user-select: none; user-select: none; }
+@media (prefers-reduced-motion: reduce) {
+  .booking__form .field :is(input, select) { transition: none; }
+}
+
+/* mobile-native: the platform layer (most guests open this from a WhatsApp link) */
+html { -webkit-tap-highlight-color: transparent; }
+a, button, select, input[type="date"], label, summary { touch-action: manipulation; }
+.btn, .lang-toggle, .nav__toggle, .tile, .menu-card {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+.tile h3, .tile p { -webkit-user-select: text; user-select: text; }
+/* a phone held sideways: the fixed header and the bar keep clear of the notch */
+@supports (padding: max(0px)) {
+  .nav__bar, .preview-strip { padding-left: max(0px, env(safe-area-inset-left)); padding-right: max(0px, env(safe-area-inset-right)); }
+}
+@media (max-width: 639px) { .h1-sep { display: none; } }
+
+/* impeccable: the browser's own surfaces carry the palette */
+.rating { align-items: center; }
+.rating__star { width: 16px; height: 16px; fill: #a86b00; flex: none; transform: translateY(-1px); }
+::selection { background: color-mix(in oklab, var(--p-ink) 22%, var(--p-bg)); color: var(--p-ink); }
+input, select, textarea { caret-color: var(--p-ink); accent-color: var(--p-ink); }
+html { scrollbar-color: color-mix(in oklab, var(--p-ink) 35%, var(--p-bg)) var(--p-bg); }
