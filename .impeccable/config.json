@@ -38,6 +38,15 @@
         ],
         "createdAt": "2026-11-19T23:37:55.480Z",
         "reason": "Claude: the only static hit is the preview strip's cream text, whose navy ground is the header's ::before; the rendered detect scan of the page reports no contrast finding"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-19T23:54:32.570Z",
+        "reason": "Claude: the ivory #fbf9f5 is the white ground of the hotel's own logo, warmed one step; the user asked for the site to follow the logo's palette"
       }
     ]
   }
