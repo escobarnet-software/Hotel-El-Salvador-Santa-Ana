@@ -328,7 +328,7 @@ main h2, footer h2 { font-weight: 500; letter-spacing: -0.01em; color: var(--p-i
 #disponibilidad .booking__form .field :is(input, select) { background: #fbf9f5; color: var(--p-ink); border-color: transparent; }
 #disponibilidad .booking__form .field :is(input, select):focus { border-color: var(--gold-on-navy); box-shadow: 0 0 0 3px rgba(210, 180, 131, 0.35); }
 
-#disponibilidad .form-note, #disponibilidad .nights, #disponibilidad .form__status { color: #d9d4ca; }
+#disponibilidad .form-note, #disponibilidad .nights, #disponibilidad .form__status { color: #eee9df; }
 #disponibilidad .field__error { color: #ffc9c2; }
 #disponibilidad .booking__form { --error: #ffb4aa; }
 #disponibilidad .booking__form select.is-picked { background-color: #f1e2c4; }
@@ -394,7 +394,7 @@ main h2, footer h2 { font-weight: 500; letter-spacing: -0.01em; color: var(--p-i
 }
 
 /* round 1 (v2) */
-.lang-toggle.btn { min-width: 44px; height: 44px; padding: 0 var(--s-3); font-size: 14px; letter-spacing: 0.06em; }
+.lang-toggle.btn { min-width: 44px; height: 44px; padding: 0 var(--s-3); font-size: 14px; letter-spacing: 0.04em; }
 @media (min-width: 1024px) {
   .story__photo:first-child, .story__photo:last-child { grid-column: span 3; }
   .story__pair { grid-template-columns: repeat(6, minmax(0, 1fr)); }
