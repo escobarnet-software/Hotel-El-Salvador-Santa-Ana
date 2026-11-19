@@ -14,17 +14,10 @@
 }
 
 /* the ES/EN switch: one 44px control in the bar, the secondary look; hidden without script (nothing to switch) */
-.lang-toggle {
-  display: none; align-items: center; justify-content: center; min-width: 44px; height: 44px; padding: 0 var(--s-3);
-  border: 1px solid var(--line-strong); border-radius: var(--r-btn, 2px); background: var(--bg); color: var(--ink);
-  font: 600 14px/1 var(--font-text); letter-spacing: 0.04em; cursor: pointer;
-  transition: background-color 150ms ease, border-color 150ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
-  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
-}
+.lang-toggle { display: none; }
 .js .lang-toggle { display: inline-flex; }
-@media (hover: hover) and (pointer: fine) { .lang-toggle:hover { background: color-mix(in oklab, var(--bg) 92%, var(--ink)); } }
-.lang-toggle:active { transform: scale(0.97); }
-@media (hover: hover) and (pointer: fine) { .lang-toggle:hover { border-color: var(--ink); } }
+/* the switch takes the page's secondary button as it is; only the arrow is left off (it is not a way forward) */
+html[data-buttons="arrow"] .lang-toggle.btn--secondary::after { content: none; }
 @media (max-width: 1023px) {
   .nav:not(.is-open) .nav__actions { display: flex; margin-left: auto; gap: var(--s-2); }
   .nav:not(.is-open) .nav__actions > .lang-toggle { display: none; }
@@ -33,7 +26,7 @@
 }
 @media (max-width: 639px) {
   :root:has(> body > nav.actionbar) .nav:not(.is-open) .nav__actions { display: flex; }
-  :root:has(> body > nav.actionbar) .nav:not(.is-open) .nav__actions > .btn { display: none; }
+  :root:has(> body > nav.actionbar) .nav:not(.is-open) .nav__actions > .btn--primary { display: none; }
   .nav.is-open .nav__actions > .lang-toggle { display: none; }
 }
 
@@ -47,10 +40,7 @@
 /* visit: two map buttons side by side, the WhatsApp row a real 44px link */
 .map-buttons { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .map-buttons .btn { padding-inline: var(--s-4); }
-html[data-buttons="arrow"] .map-buttons .btn--secondary {
-  text-decoration: none; border: 1px solid var(--line-strong); background: var(--p-bg); height: 44px;
-}
-html[data-buttons="arrow"] .map-buttons .btn--secondary:hover { border-color: var(--ink); background: var(--p-bg); }
+
 .row-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; text-decoration: underline;
   text-underline-offset: 4px; text-decoration-color: var(--line-strong); transition: text-decoration-color var(--dur) var(--ease); }
 .row-link:hover { text-decoration-color: currentColor; }
@@ -271,3 +261,146 @@ a, button, select, input[type="date"], label, summary { touch-action: manipulati
 ::selection { background: color-mix(in oklab, var(--p-ink) 22%, var(--p-bg)); color: var(--p-ink); }
 input, select, textarea { caret-color: var(--p-ink); accent-color: var(--p-ink); }
 html { scrollbar-color: color-mix(in oklab, var(--p-ink) 35%, var(--p-bg)) var(--p-bg); }
+
+/* ================================================================ v2: the hotel's own logo
+   Navy #1a3050 and gold #a8865a from the logo, EB Garamond for "El Salvador", Jost for the spaced
+   capitals of "HOTEL" and "SANTA ANA". Gold is the logo's thin-rule colour: lines, stars, small marks. */
+:root {
+  --gold: #a8865a;            /* decoration only: rules, stars (2.9:1 on ivory, never text) */
+  --gold-text: #7d5f36;       /* gold that reads as text on ivory (5.3:1) */
+  --gold-on-navy: #d2b483;    /* gold on the navy band (7:1) */
+  --t-h2: clamp(30px, 1.6vw + 16px, 42px);
+}
+body { background: var(--p-bg); }
+
+/* the preview strip on the logo's navy, the header on ivory */
+.nav::before { background: var(--p-ink); border-bottom: 0; }
+.preview-strip { color: #fbf9f5; letter-spacing: 0.04em; }
+.nav__logo { gap: 10px; font: 500 24px/1 var(--font-display); letter-spacing: 0; color: var(--p-ink); }
+.nav--split .nav__logo { font-size: 26px; }
+.nav__mark { width: auto; height: 34px !important; flex: none; }
+@media (max-width: 639px) { .nav__mark { height: 28px !important; } .nav__logo { font-size: 20px; } }
+.nav__link { font-weight: 450; letter-spacing: 0.01em; }
+
+/* headings: the logo's serif; a short gold rule under every section heading, as the logo rules its name */
+h1, h2, h3 { font-family: var(--font-display); }
+main h2, footer h2 { font-weight: 500; letter-spacing: -0.01em; color: var(--p-ink); }
+.section-head > h2::after, .rooms__head > h2::after, .story__text > h2::after, #ubicacion .section-head h2::after {
+  content: ""; display: block; width: 56px; height: 1px; margin-top: 18px; background: var(--gold);
+}
+.ground-brand .section-head > h2::after { background: var(--gold-on-navy); }
+.ground-brand h2 { color: #fbf9f5; }
+
+/* hero: the logo's lockup in live type, "Santa Ana" between two gold rules */
+.lockup { display: grid; gap: 14px; }
+.lockup__name { font: 500 clamp(40px, 3.4vw + 8px, 64px)/1.02 var(--font-display); letter-spacing: -0.015em; color: var(--p-ink); }
+.lockup__place {
+  display: flex; align-items: center; gap: 16px; max-width: 520px;
+  font: 400 14px/1 var(--font-text); letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-text);
+}
+.lockup__place::after { content: ""; flex: 1 1 0; height: 1px; background: var(--gold); }
+.hero--place .hero__lead { font-size: 20px; line-height: 1.5; color: var(--p-ink); }
+.hero--place .hero__line { font-family: var(--font-display); font-size: 24px; line-height: 1.35; font-style: italic; }
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 16px; height: 16px; fill: var(--gold); }
+.stars svg:last-child { fill: url(#none); }
+.stars svg:last-child path { fill: var(--gold); clip-path: inset(0 10% 0 0); }  /* 4.9 of 5: the last star 90% full */
+.rating { font-size: 15px; letter-spacing: 0.01em; }
+.rating b { font-weight: 600; }
+.rating__star { display: none; }
+
+/* visit: the card on cream, the city set in the serif */
+#ubicacion .visit--card { background: var(--p-surface); }
+.visit__address { font: 500 28px/1.2 var(--font-display); color: var(--p-ink); }
+.visit__col > .t-label, .t-label { letter-spacing: 0.08em; text-transform: uppercase; font-size: 12.5px; color: var(--gold-text); }
+
+/* rooms on the cream band: the price in the serif, the sample note in gold */
+#precios .tile__media { box-shadow: 0 1px 0 rgba(26, 48, 80, 0.06), 0 18px 40px -24px rgba(26, 48, 80, 0.45); }
+.room-price b { font: 500 34px/1 var(--font-display); color: var(--p-ink); }
+.sample-note { color: var(--gold-text) !important; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12.5px !important; }
+.tile .tile__head h3 { font: 500 24px/1.2 var(--font-display); }
+
+/* booking: the navy band (the page's one dark section) with the form on a deeper navy panel */
+#disponibilidad.ground-brand { --bg: var(--p-ink); background: var(--p-ink); color: #fbf9f5; }
+#disponibilidad .section-head p { color: #e6e1d6; }
+#disponibilidad .booking__form { background: #223b60; border: 1px solid rgba(210, 180, 131, 0.35); }
+#disponibilidad .booking__form label { color: #f3efe7; font-weight: 500; letter-spacing: 0.02em; }
+#disponibilidad .booking__form .field :is(input, select) { background: #fbf9f5; color: var(--p-ink); border-color: transparent; }
+#disponibilidad .booking__form .field :is(input, select):focus { border-color: var(--gold-on-navy); box-shadow: 0 0 0 3px rgba(210, 180, 131, 0.35); }
+
+#disponibilidad .form-note, #disponibilidad .nights, #disponibilidad .form__status { color: #d9d4ca; }
+#disponibilidad .field__error { color: #ffc9c2; }
+#disponibilidad .booking__form { --error: #ffb4aa; }
+#disponibilidad .booking__form select.is-picked { background-color: #f1e2c4; }
+#disponibilidad .pl-photo img { box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6); }
+
+/* near: the place names in the serif */
+.near .tile h3 { font: 500 21px/1.25 var(--font-display); }
+
+/* the house: the mural large on the right, two small photographs under the words */
+.story__text { gap: var(--s-5); }
+.story__pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); margin-top: var(--s-3); }
+.story__photo { margin: 0; overflow: clip; aspect-ratio: 4 / 5; }
+.story__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.develop { height: min(640px, calc(100svh - var(--padt) - var(--padb) - var(--bar))); }
+.story__body { font-family: var(--font-display); font-size: 23px; line-height: 1.45; }
+
+/* the close: the hotel's logo is the name set across */
+.close__logo { display: block; width: min(520px, 100%); height: auto; margin: auto auto 0; }
+.closing__cta.close--word { align-items: stretch; }
+.footer__address { font-family: var(--font-display); font-weight: 500; }
+.footer h3 { font: 500 12.5px/1.4 var(--font-text); letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-text); }
+
+/* buttons: navy, a touch of letter-spacing like the logo's capitals */
+.btn { letter-spacing: 0.02em; font-weight: 500; }
+
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .develop { grid-column: 1 / -1; }
+  .story__pair { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+  .story__photo { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 639px) {
+  .lockup__place { font-size: 12.5px; letter-spacing: 0.34em; }
+  .hero--place .hero__line { font-size: 21px; }
+  .story__body { font-size: 20px; }
+  .story__photo { aspect-ratio: 1 / 1; }
+  .close__logo { width: min(300px, 86%); }
+  .visit__address { font-size: 24px; }
+}
+/* v2 fill */
+.lockup__name { font-size: clamp(42px, 4.2vw + 6px, 76px); }
+@media (min-width: 1024px) {
+  .rooms.grid > .tile.span-3 { --tile-ratio: 2 / 3; }
+  .near .tile { --tile-ratio: 2 / 3; }
+}
+/* the house, on the page's columns: in span-5 the pair takes 2 + 3 columns; below 1024 two halves of the row */
+@media (min-width: 1024px) {
+  .story__pair { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gutter); }
+  .story__photo { aspect-ratio: auto; height: clamp(180px, 26svh, 260px); }
+  .story__photo:first-child { grid-column: span 2; }
+  .story__photo:last-child { grid-column: span 3; }
+}
+@media (max-width: 1023px) {
+  .story > .develop.span-7 { grid-column: 1 / -1 !important; }
+  .story > .story__text.span-5 { grid-column: 1 / -1 !important; }
+  .story__pair { max-width: none !important; gap: var(--gutter); }
+}
+@media (max-width: 1023px) { .story > .develop { height: auto !important; width: 100%; min-width: 0; } }
+@media (max-width: 639px) {
+  .story__pair { display: none; }
+  .close__logo { width: min(230px, 70%); }
+  .closing__links .grid > .span-6.start-7 { display: none; }
+}
+
+/* round 1 (v2) */
+.lang-toggle.btn { min-width: 44px; height: 44px; padding: 0 var(--s-3); font-size: 14px; letter-spacing: 0.06em; }
+@media (min-width: 1024px) {
+  .story__photo:first-child, .story__photo:last-child { grid-column: span 3; }
+  .story__pair { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (max-width: 359px) {
+  .nav__logo { font-size: 17px !important; gap: 6px; }
+  .nav__mark { height: 22px !important; }
+  .nav__bar { gap: 6px; }
+}

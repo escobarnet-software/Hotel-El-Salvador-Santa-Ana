@@ -237,6 +237,62 @@
    "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
    "page": "https://commons.wikimedia.org/wiki/File:Patio_Garden_with_blooming_plants.jpg",
    "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f4503462.webp",
+   "files": [
+    "photo-f4503462-500.webp",
+    "photo-f4503462-960.webp",
+    "photo-f4503462.webp"
+   ],
+   "id": "f4503462",
+   "alt": "Nicaragualeonspanishcolonial1",
+   "by": "Serenityweb1",
+   "licence": "CC BY 3.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Nicaragualeonspanishcolonial1.JPG",
+   "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f199742426-500.webp",
+   "files": [
+    "photo-f199742426-500.webp"
+   ],
+   "id": "f199742426",
+   "alt": "Vintage courtyard hammock 2026-09-14 garden furniture 02",
+   "by": "P1898",
+   "licence": "CC BY 4.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Vintage_courtyard_hammock_2026-09-14_garden_furniture_02.jpg",
+   "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f92246413.webp",
+   "files": [
+    "photo-f92246413-500.webp",
+    "photo-f92246413-960.webp",
+    "photo-f92246413.webp"
+   ],
+   "id": "f92246413",
+   "alt": "Antigua Guatemala 1979 La Merced Courtyard Fountain",
+   "by": "Infrogmation",
+   "licence": "CC BY-SA 4.0",
+   "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+   "page": "https://commons.wikimedia.org/wiki/File:Antigua_Guatemala_1979_La_Merced_Courtyard_Fountain.jpg",
+   "source": "Wikimedia Commons"
+  },
+  {
+   "file": "photo-f3136275-500.webp",
+   "files": [
+    "photo-f3136275-500.webp"
+   ],
+   "id": "f3136275",
+   "alt": "GT056-Antigua STPyard3",
+   "by": "Unknown author",
+   "licence": "Public domain",
+   "licenceUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+   "page": "https://commons.wikimedia.org/wiki/File:GT056-Antigua_STPyard3.jpeg",
+   "source": "Wikimedia Commons"
   }
  ]
 }

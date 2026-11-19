@@ -10,15 +10,16 @@
 <meta property="og:description" content="Hotel tranquilo y familiar en Santa Ana. Precios, disponibilidad y ubicación en una página.">
 <meta property="og:image" content="share.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#ecebe7">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1a3050">
 <!-- <link rel="canonical" href="https://[dominio del hotel]/"> : pendiente, el hotel aún no tiene dominio -->
 <meta name="site-kind" content="other">
 <meta name="page-type" content="place">
 <meta name="page-kind" content="place">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Besley:wght@400..600&family=Albert+Sans:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..600;1,400&family=Jost:wght@300..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/system.css">
 <link rel="stylesheet" href="assets/ui/cards.css">
 <link rel="stylesheet" href="assets/motion/motion.css">
@@ -27,14 +28,14 @@
 <link rel="stylesheet" href="assets/icons/icon.css">
 <style>
 :root {
-  --p-bg: #ecebe7; --p-surface: #e1dfd9; --p-ink: #38450f; --p-muted: #5a6537;
-  --p-accent: #38450f; --p-accent-ink: #ecebe7; --p-action: #38450f; --p-action-ink: #ecebe7;
-  --p-inv-bg: #38450f; --p-inv-surface: #435020; --p-inv-ink: #ecebe7; --p-inv-muted: #bbbfaf;
-  --p-inv-accent: #ecebe7; --p-inv-accent-ink: #38450f; --p-inv-action: #ecebe7; --p-inv-action-ink: #38450f;
-  --font-display: "Besley", Georgia, serif;
-  --font-text: "Albert Sans", system-ui, sans-serif;
+  --p-bg: #fbf9f5; --p-surface: #f2ece2; --p-ink: #1a3050; --p-muted: #55657c;
+  --p-accent: #1a3050; --p-accent-ink: #fbf9f5; --p-action: #1a3050; --p-action-ink: #fbf9f5;
+  --p-inv-bg: #1a3050; --p-inv-surface: #283d5b; --p-inv-ink: #fbf9f5; --p-inv-muted: #a5adb9;
+  --p-inv-accent: #fbf9f5; --p-inv-accent-ink: #1a3050; --p-inv-action: #fbf9f5; --p-inv-action-ink: #1a3050;
+  --font-display: "EB Garamond", Georgia, serif;
+  --font-text: "Jost", system-ui, sans-serif;
   --display-weight: 400;
-  --display-tracking: -0.02em;
+  --display-tracking: -0.012em;
 }
 </style>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
@@ -49,9 +50,9 @@
 <body>
 <!-- type: place (hotel pequeño)
      deal: hero place (impreso), nav nav-split, close close-word (momento de tipo "name"), footer footer-visit,
-           rhythm space, buttons arrow, mark leaf, la oferta strip -> habitaciones en "side" (rooms side),
+           rhythm colour-band (la banda azul es la reserva), rooms on --g-alt, buttons arrow, mark leaf, la oferta strip -> habitaciones en "side" (rooms side),
            el lugar story, grounds none
-     palette olive-on-bone (un fondo de piedra cálida y el verde oliva de un jardín: el jardín es lo que más elogian), type besley
+     palette: los colores del logo del hotel (start.mjs brand: azul marino #1a3050, dorado #a8865a, fondo marfil), type garamond (EB Garamond como la serif de "El Salvador", Jost como las mayúsculas espaciadas de "HOTEL" y "SANTA ANA")
      moments: picture-develops en la foto del mural (#hotel), se revela una vez al entrar en pantalla
      Datos reales: nombre, ciudad, 4.9 en Google con 39 reseñas, jardín, mural, tranquilo y familiar, WhatsApp.
      De ejemplo (data-assumed): tipos de habitación, capacidades y precios. Fotos: stand-ins de Wikimedia Commons. -->
@@ -60,24 +61,24 @@
   <p class="wrap preview-strip" data-i18n="strip">Vista previa · fotos y precios de ejemplo</p>
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
-    <a class="nav__logo" href="#top"><span class="mark" data-mark="leaf" aria-hidden="true"></span>Hotel El Salvador</a>
+    <a class="nav__logo" href="#top"><img class="nav__mark" src="assets/brand/mark.webp" alt="" width="246" height="323">Hotel El Salvador</a>
     <nav class="nav__links" aria-label="Principal" data-i18n-attr="aria-label:navLabel">
       <div class="nav__item">
         <a class="nav__link" href="#precios"><span data-i18n="navRooms">Precios</span> <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav__menu">
           <div class="wrap grid">
             <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f121729298-500.webp" alt="" width="500" height="334" data-source="stand-in" data-subject="habitación sencilla"></div>
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f121729298-500.webp" alt="" decoding="async" width="500" height="334" data-source="stand-in" data-subject="habitación sencilla"></div>
               <span class="t-card" data-i18n="roomSingle">Habitación sencilla</span>
               <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$27</span>
             </a>
             <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f99550429-500.webp" alt="" width="500" height="333" data-source="stand-in" data-subject="habitación doble"></div>
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f99550429-500.webp" alt="" decoding="async" width="500" height="333" data-source="stand-in" data-subject="habitación doble"></div>
               <span class="t-card" data-i18n="roomDouble">Habitación doble</span>
               <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$38</span>
             </a>
             <a class="menu-card span-3" href="#precios">
-              <div class="panel"><img class="frame__img" src="assets/img/photo-f83857421-500.webp" alt="" width="500" height="327" data-source="stand-in" data-subject="habitación familiar"></div>
+              <div class="panel"><img class="frame__img" src="assets/img/photo-f83857421-500.webp" alt="" decoding="async" width="500" height="327" data-source="stand-in" data-subject="habitación familiar"></div>
               <span class="t-card" data-i18n="roomFamily">Habitación familiar</span>
               <span class="t-small muted" data-assumed><span data-i18n="from">Desde</span> US$54</span>
             </a>
@@ -89,7 +90,7 @@
       <div class="nav__item"><a class="nav__link" href="#hotel" data-i18n="navHotel">El hotel</a></div>
     </nav>
     <div class="nav__actions">
-      <a class="lang-toggle" href="?lang=en" hreflang="en" lang="en" aria-label="Read this page in English" data-i18n-attr="aria-label:langLabel;lang:langCode;hreflang:langCode" data-i18n="langShort">EN</a>
+      <a class="lang-toggle btn btn--secondary" href="?lang=en" hreflang="en" lang="en" aria-label="Read this page in English" data-i18n-attr="aria-label:langLabel;lang:langCode;hreflang:langCode" data-i18n="langShort">EN</a>
       <a class="btn btn--primary" href="#disponibilidad" data-i18n="cta">Consultar disponibilidad</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menú" data-i18n-attr="aria-label:menu">
@@ -115,6 +116,8 @@
       <li><a href="https://commons.wikimedia.org/wiki/File:AntiguaCasaPatio.jpg">Infrogmation photo, 1979</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>, adapted</li>
       <li><a href="https://commons.wikimedia.org/wiki/File:In_Antigua_Guatemala_(6849905758).jpg">Murray Foubister</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a></li>
       <li><a href="https://commons.wikimedia.org/wiki/File:Patio_Garden_with_blooming_plants.jpg">Almapayokels</a>, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en">CC0</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:Nicaragualeonspanishcolonial1.JPG">Serenityweb1</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a></li>
+      <li><a href="https://commons.wikimedia.org/wiki/File:GT056-Antigua_STPyard3.jpeg">Unknown author</a>, <a href="https://creativecommons.org/publicdomain/mark/1.0/">Public domain</a></li>
     </ul>
   </section>
 </main>
@@ -126,7 +129,7 @@
         <div><h2 id="close-h" data-i18n="closeH">Reservas por WhatsApp</h2><p class="t-lead" data-i18n="closeLine">Escríbenos al +503 7036-7823 con tus fechas.</p></div>
         <a class="btn btn--primary" href="https://wa.me/50370367823" data-wa data-i18n="barCta">Reservar por WhatsApp</a>
       </div>
-      <p class="close__word" aria-hidden="true">Hotel El Salvador</p>
+      <img class="close__logo" src="assets/brand/logo.webp" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="1090" height="674" loading="lazy" decoding="async">
     </div>
     <div class="closing__links">
       <div class="grid">
