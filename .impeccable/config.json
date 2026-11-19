@@ -29,6 +29,15 @@
         ],
         "createdAt": "2026-11-19T22:57:12.023Z",
         "reason": "Claude: the flagged rows are ruled list rows (visit rows, footer legal) whose 1px top rule separates 44px rows with centred text; rendered detect scan returned no findings"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-19T23:37:55.480Z",
+        "reason": "Claude: the only static hit is the preview strip's cream text, whose navy ground is the header's ::before; the rendered detect scan of the page reports no contrast finding"
       }
     ]
   }
