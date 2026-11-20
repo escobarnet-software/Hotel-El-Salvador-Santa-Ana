@@ -47,6 +47,24 @@
         ],
         "createdAt": "2026-11-19T23:54:32.570Z",
         "reason": "Claude: the ivory #fbf9f5 is the white ground of the hotel's own logo, warmed one step; the user asked for the site to follow the logo's palette"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-20T00:08:42.001Z",
+        "reason": "Claude: the user asked for more animation; the band repeats real facts already on the page, pauses on hover, has a pause button and stands still under reduced motion"
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-20T00:08:42.007Z",
+        "reason": "Claude: the monogram watermarks (opacity .14 and .16) are meant as faint background ornament and are visible in the rendered screenshots; nothing else is buried"
       }
     ]
   }
