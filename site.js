@@ -16,7 +16,7 @@ const EN = {
   langShort: 'ES', langLabel: 'Ver esta página en español', langCode: 'es',
   menu: 'Menu',
   altHero: 'Garden patio with hanging plants and paintings, in front of an arched walkway',
-  ratingText: 'on Google · 39 reviews',
+  ratingText: 'on Google · 39 reviews', badgeNote: '39 reviews on Google',
   heroLine: 'A quiet, family-friendly hotel in Santa Ana, with a garden and a mural.',
   whereH: 'How to get to the hotel',
   whereLine: 'Open the route in your favourite app, or message us and we will explain how to get here.',

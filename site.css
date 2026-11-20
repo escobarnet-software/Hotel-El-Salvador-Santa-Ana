@@ -316,3 +316,68 @@ main h2::after { content: ""; display: block; width: 56px; height: 2px; margin-t
 }
 @media print { .rv-on .reveal { opacity: 1 !important; transform: none !important; } }
 @media (max-width: 639px) { .hero-v3 .btn-row { display: grid; grid-template-columns: minmax(0, 1fr); } .hero-v3 .btn-row .btn { width: 100%; justify-content: center; } }
+
+/* ================================================================ v4: the colonial arch, a little more character
+   The arch is the motif: the hero's photograph and the mural are arches, a gold arch outline sits offset behind
+   the hero photograph, and the rating floats on a card at its foot. */
+.hero-v3__stage { position: relative; padding: 0 0 26px 26px; }
+.hero-v3__outline { position: absolute; left: 0; bottom: 0; right: 26px; top: 26px; border: 1.5px solid var(--gold); border-radius: 999px 999px 28px 28px; pointer-events: none; }
+.hero-v3__media { border-radius: 999px 999px 28px 28px; height: clamp(440px, calc(100svh - var(--nav) - 110px), 780px); }
+.hero-v3__media > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-badge { position: absolute; left: -6px; bottom: 54px; display: flex; align-items: center; gap: 14px; padding: 14px 20px 14px 16px;
+  background: var(--white); border-radius: 18px; box-shadow: var(--shadow-2); }
+.hero-badge__mark { width: 30px; height: auto; flex: none; }
+.hero-badge__text { display: grid; gap: 4px; }
+.hero-badge__score { display: flex; align-items: center; gap: 10px; margin: 0; }
+.hero-badge__score b { font: 500 34px/1 var(--font-display); color: var(--navy); }
+.hero-badge__note { margin: 0; font-size: 14px; color: var(--p-muted); }
+.arch { border-radius: 999px 999px 28px 28px !important; }
+.hotel-v3__mural.arch { aspect-ratio: 4 / 4.6; }
+
+/* the hero photograph settles in once: a slow 1.06 to 1 zoom; the outline and the card follow it in */
+@keyframes hero-settle { from { transform: scale(1.06); } to { transform: none; } }
+@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes outline-in { from { opacity: 0; transform: translate(-10px, 10px); } to { opacity: 1; transform: none; } }
+.rv-on .hero-v3__media > img { animation: hero-settle 2.4s var(--ease-out) both; }
+.rv-on .hero-v3__outline { animation: outline-in 1.1s var(--ease-out) 300ms both; }
+.rv-on .hero-badge { animation: rise-in 800ms var(--ease-out) 700ms both; }
+@media (prefers-reduced-motion: reduce) {
+  .rv-on .hero-v3__media > img, .rv-on .hero-v3__outline, .rv-on .hero-badge { animation: none !important; }
+}
+
+/* near: only the name rides on the photograph; the line opens on hover or keyboard focus */
+.place__text { left: 14px; right: auto; bottom: 14px; max-width: calc(100% - 28px); padding: 10px 16px; gap: 0; border-radius: 12px;
+  transition: padding 300ms var(--ease-out), box-shadow 300ms var(--ease-out); box-shadow: 0 6px 20px -10px rgba(26, 48, 80, 0.45); }
+.place__line { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 320ms var(--ease-out), opacity 220ms ease, margin 320ms var(--ease-out); margin-top: 0; }
+.place__line > span { overflow: hidden; }
+.place__name { display: flex; align-items: center; gap: 8px; }
+.place__name::after { content: "→"; font-family: var(--font-text); font-size: 15px; color: var(--gold-text); transition: transform 200ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .place:hover .place__line, .place:focus-visible .place__line { grid-template-rows: 1fr; opacity: 1; margin-top: 4px; }
+  .place:hover .place__name::after { transform: translateX(3px); }
+  .place:hover .place__text { box-shadow: 0 10px 30px -12px rgba(26, 48, 80, 0.55); }
+}
+/* touch screens have no hover: the name alone, so the label never covers the photograph; the line stays
+   in the page for screen readers */
+@media (hover: none), (pointer: coarse) {
+  .place__line { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) { .place__line, .place__text { transition: none; } }
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hero-v3__stage { order: -1; padding: 0 0 18px 18px; }
+  .hero-v3__outline { top: 18px; right: 18px; }
+  .hero-v3__media { height: min(60vw, 520px); }
+  .hero-badge { bottom: 40px; }
+}
+@media (max-width: 639px) {
+  .hero-v3__stage { order: -1; padding: 0 0 14px 14px; }
+  .hero-v3__outline { top: 14px; right: 14px; border-radius: 999px 999px 20px 20px; }
+  .hero-v3__media { height: auto; aspect-ratio: 4 / 4.2; border-radius: 999px 999px 20px 20px; }
+  .hero-badge { left: -4px; bottom: 30px; padding: 10px 14px 10px 12px; gap: 10px; border-radius: 14px; }
+  .hero-badge__mark { width: 22px; }
+  .hero-badge__score b { font-size: 26px; }
+  .hero-badge__score .stars svg { width: 14px; height: 14px; }
+  .hero-badge__note { font-size: 13px; }
+  .hotel-v3__mural.arch { aspect-ratio: 4 / 4.4; border-radius: 999px 999px 20px 20px !important; }
+}

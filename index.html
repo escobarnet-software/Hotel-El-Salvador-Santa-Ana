@@ -99,7 +99,6 @@
         <div class="hero-v3__text">
           <p class="hero-v3__place"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Santa Ana, El Salvador</span></p>
           <h1 id="hero-h">Hotel El Salvador</h1>
-          <p class="rating"><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg class="star-90"><use href="#i-star"/></svg></span> <b>4.9</b> <span data-i18n="ratingText">en Google · 39 reseñas</span></p>
           <p class="hero-v3__lead" data-i18n="heroLine">Un hotel tranquilo y familiar en Santa Ana, con jardín y un mural.</p>
           <div class="btn-row"><a class="btn btn--primary" href="#disponibilidad" data-i18n="cta">Consultar disponibilidad</a><a class="btn btn--secondary" href="#precios" data-i18n="seePrices">Ver precios</a></div>
           <div class="praise">
@@ -111,10 +110,19 @@
             </ul>
           </div>
         </div>
-        <figure class="hero-v3__media hero-visual" data-enter-media>
-          <img src="assets/img/photo-f3136275-960.webp" srcset="assets/img/photo-f3136275-500.webp 500w, assets/img/photo-f3136275-960.webp 960w" sizes="(max-width: 1023px) 100vw, 58vw" width="960" height="720" alt="Jardín con césped, helechos, un sendero y una fuente al fondo" data-i18n-attr="alt:altFountain" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="jardín del hotel">
-          <img class="hero-v3__mark" src="assets/brand/mark-52.webp" alt="" width="52" height="68" aria-hidden="true">
-        </figure>
+        <div class="hero-v3__stage">
+          <span class="hero-v3__outline" aria-hidden="true"></span>
+          <figure class="hero-v3__media">
+            <img src="assets/img/photo-f3136275-960.webp" srcset="assets/img/photo-f3136275-500.webp 500w, assets/img/photo-f3136275-960.webp 960w" sizes="(max-width: 1023px) 100vw, 58vw" width="960" height="720" alt="Jardín con césped, helechos, un sendero y una fuente al fondo" data-i18n-attr="alt:altFountain" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="jardín del hotel">
+          </figure>
+          <div class="hero-badge">
+            <img class="hero-badge__mark" src="assets/brand/mark-52.webp" alt="" width="52" height="68">
+            <div class="hero-badge__text">
+              <p class="hero-badge__score"><b>4.9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg class="star-90"><use href="#i-star"/></svg></span></p>
+              <p class="hero-badge__note" data-i18n="badgeNote">39 reseñas en Google</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -240,7 +248,7 @@
             <figure class="rounded reveal"><img src="assets/img/photo-f126934419-500.webp" srcset="assets/img/photo-f126934419-500.webp 500w, assets/img/photo-f126934419-960.webp 960w" sizes="(max-width: 639px) 50vw, 300px" width="500" height="746" alt="Macetas con flores fucsia y helechos en un patio" data-i18n-attr="alt:altGarden" loading="lazy" decoding="async" data-source="stand-in" data-subject="jardín del hotel"></figure>
           </div>
         </div>
-        <figure class="develop hotel-v3__mural" data-moment="picture-develops"><img src="assets/img/photo-f28490155.webp" srcset="assets/img/photo-f28490155-500.webp 500w, assets/img/photo-f28490155-960.webp 960w, assets/img/photo-f28490155.webp 1280w" sizes="(max-width: 1023px) 100vw, 55vw" width="1280" height="853" alt="Mural de colores con gatos y girasoles pintado en una pared" data-i18n-attr="alt:altMural" loading="lazy" decoding="async" data-source="stand-in" data-subject="mural del hotel"></figure>
+        <figure class="develop hotel-v3__mural arch" data-moment="picture-develops"><img src="assets/img/photo-f28490155.webp" srcset="assets/img/photo-f28490155-500.webp 500w, assets/img/photo-f28490155-960.webp 960w, assets/img/photo-f28490155.webp 1280w" sizes="(max-width: 1023px) 100vw, 55vw" width="1280" height="853" alt="Mural de colores con gatos y girasoles pintado en una pared" data-i18n-attr="alt:altMural" loading="lazy" decoding="async" data-source="stand-in" data-subject="mural del hotel"></figure>
       </div>
     </div>
   </section>
@@ -257,19 +265,19 @@
       <ul class="near-v3">
         <li class="reveal"><a class="place place--big" href="https://www.google.com/maps/search/?api=1&amp;query=Catedral+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
           <img src="assets/img/photo-f26840562-960.webp" srcset="assets/img/photo-f26840562-500.webp 500w, assets/img/photo-f26840562-960.webp 960w, assets/img/photo-f26840562.webp 1280w" sizes="(max-width: 639px) 100vw, 40vw" width="960" height="720" alt="Fachada blanca neogótica de la Catedral de Santa Ana" data-i18n-attr="alt:altCathedral" loading="lazy" decoding="async" data-source="stand-in" data-subject="Catedral de Santa Ana">
-          <span class="place__text"><span class="place__name">Catedral de Santa Ana</span><span class="place__line" data-i18n="nearCathedral">Catedral neogótica blanca, frente al Parque Libertad.</span></span></a></li>
+          <span class="place__text"><span class="place__name">Catedral de Santa Ana</span><span class="place__line"><span data-i18n="nearCathedral">Catedral neogótica blanca, frente al Parque Libertad.</span></span></span></a></li>
         <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Teatro+de+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
           <img src="assets/img/photo-f28362802-500.webp" srcset="assets/img/photo-f28362802-360.webp 360w, assets/img/photo-f28362802-500.webp 500w, assets/img/photo-f28362802-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="360" alt="Edificio verde claro del Teatro de Santa Ana con columnas y arcos" data-i18n-attr="alt:altTheatre" loading="lazy" decoding="async" data-source="stand-in" data-subject="Teatro de Santa Ana">
-          <span class="place__text"><span class="place__name">Teatro de Santa Ana</span><span class="place__line" data-i18n="nearTheatre">Teatro de inicios del siglo XX, en el mismo parque.</span></span></a></li>
+          <span class="place__text"><span class="place__name">Teatro de Santa Ana</span><span class="place__line"><span data-i18n="nearTheatre">Teatro de inicios del siglo XX, en el mismo parque.</span></span></span></a></li>
         <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Parque+Libertad+Santa+Ana+El+Salvador" target="_blank" rel="noopener">
           <img src="assets/img/photo-f28364149-500.webp" srcset="assets/img/photo-f28364149-360.webp 360w, assets/img/photo-f28364149-500.webp 500w, assets/img/photo-f28364149-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Kiosco del Parque Libertad entre árboles" data-i18n-attr="alt:altPark" loading="lazy" decoding="async" data-source="stand-in" data-subject="Parque Libertad">
-          <span class="place__text"><span class="place__name">Parque Libertad</span><span class="place__line" data-i18n="nearPark">La plaza central de la ciudad, con su kiosco.</span></span></a></li>
+          <span class="place__text"><span class="place__name">Parque Libertad</span><span class="place__line"><span data-i18n="nearPark">La plaza central de la ciudad, con su kiosco.</span></span></span></a></li>
         <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Volcan+de+Santa+Ana" target="_blank" rel="noopener">
           <img src="assets/img/photo-f194311767-500.webp" srcset="assets/img/photo-f194311767-360.webp 360w, assets/img/photo-f194311767-500.webp 500w, assets/img/photo-f194311767-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Laguna verde dentro del cráter del Volcán de Santa Ana" data-i18n-attr="alt:altVolcano" loading="lazy" decoding="async" data-source="stand-in" data-subject="Volcán de Santa Ana">
-          <span class="place__text"><span class="place__name" data-i18n="nameVolcano">Volcán de Santa Ana</span><span class="place__line" data-i18n="nearVolcano">El volcán más alto del país, con una laguna verde en el cráter.</span></span></a></li>
+          <span class="place__text"><span class="place__name" data-i18n="nameVolcano">Volcán de Santa Ana</span><span class="place__line"><span data-i18n="nearVolcano">El volcán más alto del país, con una laguna verde en el cráter.</span></span></span></a></li>
         <li class="reveal"><a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=Lago+de+Coatepeque" target="_blank" rel="noopener">
           <img src="assets/img/photo-f56641573-500.webp" srcset="assets/img/photo-f56641573-360.webp 360w, assets/img/photo-f56641573-500.webp 500w, assets/img/photo-f56641573-960.webp 960w" sizes="(max-width: 639px) 100vw, 25vw" width="500" height="375" alt="Lago de Coatepeque, azul, rodeado de cerros verdes" data-i18n-attr="alt:altLake" loading="lazy" decoding="async" data-source="stand-in" data-subject="Lago de Coatepeque">
-          <span class="place__text"><span class="place__name" data-i18n="nameLake">Lago de Coatepeque</span><span class="place__line" data-i18n="nearLake">Lago azul dentro de una caldera volcánica.</span></span></a></li>
+          <span class="place__text"><span class="place__name" data-i18n="nameLake">Lago de Coatepeque</span><span class="place__line"><span data-i18n="nearLake">Lago azul dentro de una caldera volcánica.</span></span></span></a></li>
       </ul>
     </div>
   </section>
