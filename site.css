@@ -408,24 +408,21 @@ main h2::after {
 .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; z-index: 2; pointer-events: none; }
 
 /* the band of praise */
-.ribbon { position: relative; display: flex; align-items: center; background: var(--navy); color: var(--ivory); overflow: hidden; height: 64px; }
-.ribbon__track { display: flex; width: max-content; animation: ribbon-run 42s linear infinite; }
+.ribbon { position: relative; display: flex; align-items: center; background: var(--navy); color: var(--ivory); overflow: hidden; height: 64px; contain: layout paint; }
+.ribbon__track { display: flex; width: max-content; animation: ribbon-run 42s linear infinite; will-change: transform; backface-visibility: hidden; transform: translate3d(0, 0, 0); }
 .ribbon__group { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; flex: none; }
 .ribbon__group li { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap;
   font: italic 400 22px/1 var(--font-display); letter-spacing: 0.01em; color: #f3efe7; }
 .ribbon__group li::after { content: ""; width: 16px; height: 21px; flex: none; background: url("assets/brand/mark-52.webp") center / contain no-repeat; opacity: 0.95; }
-@keyframes ribbon-run { to { transform: translateX(-50%); } }
-.ribbon:hover .ribbon__track, .ribbon.is-paused .ribbon__track { animation-play-state: paused; }
-.ribbon__pause { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; display: grid; place-items: center;
-  border: 1px solid rgba(210, 180, 131, 0.5); border-radius: 50%; background: var(--navy); color: var(--gold-on-navy); cursor: pointer; }
-.ribbon__pause svg { width: 14px; height: 14px; fill: currentColor; }
-.ribbon::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 110px; background: linear-gradient(90deg, rgba(26, 48, 80, 0), var(--navy) 55%); z-index: 1; pointer-events: none; }
-.ribbon__pause { z-index: 2; }
+@keyframes ribbon-run { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+.ribbon::before, .ribbon::after { content: ""; position: absolute; top: 0; bottom: 0; width: 72px; z-index: 1; pointer-events: none; }
+.ribbon::before { left: 0; background: linear-gradient(90deg, var(--navy), rgba(26, 48, 80, 0)); }
+.ribbon::after { right: 0; background: linear-gradient(270deg, var(--navy), rgba(26, 48, 80, 0)); }
 @media (prefers-reduced-motion: reduce) {
   .ribbon__track { animation: none; }
   .ribbon__group[aria-hidden="true"] { display: none; }
   .ribbon { justify-content: center; }
-  .ribbon::before { display: none; }
+  .ribbon::before, .ribbon::after { display: none; }
 }
 
 /* watermark monogram on the cream rooms band */

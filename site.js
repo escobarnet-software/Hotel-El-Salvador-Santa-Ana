@@ -16,7 +16,7 @@ const EN = {
   langShort: 'ES', langLabel: 'Ver esta página en español', langCode: 'es',
   menu: 'Menu',
   altHero: 'Garden patio with hanging plants and paintings, in front of an arched walkway',
-  ratingText: 'from our guests', badgeNote: 'Rated by our guests', rbCity: 'Santa Ana, El Salvador', rbRating: '4.9 stars', rbPause: 'Pause the band', rbPlay: 'Play the band',
+  ratingText: 'from our guests', badgeNote: 'Rated by our guests', rbCity: 'Santa Ana, El Salvador', rbRating: '4.9 stars',
   heroLine: 'A quiet, family-friendly hotel in Santa Ana, with a garden and a mural.',
   whereH: 'How to get to the hotel',
   whereLine: 'Open the route in your favourite app, or message us and we will explain how to get here.',
@@ -314,7 +314,6 @@ setLang(start === 'en' ? 'en' : 'es', Boolean(fromUrl));
 })();
 
 /* ---------------------------------------------------------------- v5: motion drawn from the logo's gold and arch */
-Object.assign(ES, { rbPlay: 'Reanudar la franja' });
 const calmMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // the gold arch behind the hero photograph: a true semicircle on top, redrawn to the frame's size, traced once on load
@@ -347,23 +346,6 @@ const calmMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').m
       if (k < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
-  });
-})();
-
-// the band of praise: pauses on hover (CSS), with its own pause button (it moves longer than 5 s)
-(function ribbon() {
-  const band = document.querySelector('.ribbon');
-  if (!band) return;
-  const btn = band.querySelector('.ribbon__pause');
-  if (calmMotion()) { btn.hidden = true; return; }
-  btn.addEventListener('click', () => {
-    const paused = band.classList.toggle('is-paused');
-    btn.setAttribute('aria-pressed', String(paused));
-    const dict = lang === 'en' ? EN : ES;
-    btn.setAttribute('aria-label', paused ? (dict.rbPlay || ES.rbPlay) : (dict.rbPause || ES.rbPause));
-    btn.innerHTML = paused
-      ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z"/></svg>'
-      : '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg>';
   });
 })();
 
