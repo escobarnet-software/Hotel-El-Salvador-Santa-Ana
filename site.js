@@ -16,7 +16,7 @@ const EN = {
   langShort: 'ES', langLabel: 'Ver esta página en español', langCode: 'es',
   menu: 'Menu',
   altHero: 'Garden patio with hanging plants and paintings, in front of an arched walkway',
-  ratingText: 'on Google · 39 reviews', badgeNote: '39 reviews on Google',
+  ratingText: 'on Google · 39 reviews', badgeNote: '39 reviews on Google', badgeNote2: 'reviews on Google', rbCity: 'Santa Ana, El Salvador', rbRating: '4.9 on Google', rbPause: 'Pause the band', rbPlay: 'Play the band',
   heroLine: 'A quiet, family-friendly hotel in Santa Ana, with a garden and a mural.',
   whereH: 'How to get to the hotel',
   whereLine: 'Open the route in your favourite app, or message us and we will explain how to get here.',
@@ -311,4 +311,73 @@ setLang(start === 'en' ? 'en' : 'es', Boolean(fromUrl));
   items.forEach(el => io.observe(el));
   // printing shows everything
   window.addEventListener('beforeprint', () => items.forEach(el => el.classList.add('is-in')));
+})();
+
+/* ---------------------------------------------------------------- v5: motion drawn from the logo's gold and arch */
+Object.assign(ES, { rbPlay: 'Reanudar la franja' });
+const calmMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// the gold arch behind the hero photograph: a true semicircle on top, redrawn to the frame's size, traced once on load
+(function archOutline() {
+  const svg = document.querySelector('.hero-v3__outline');
+  if (!svg) return;
+  const path = svg.querySelector('path');
+  const draw = () => {
+    const w = svg.clientWidth, h = svg.clientHeight;
+    if (!w || !h) return;
+    const s = 1, r = Math.min(w / 2, h) - s, c = Math.min(28, h / 6);
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    path.setAttribute('d', `M${s},${h - s - c} L${s},${r + s} A${r},${r} 0 0 1 ${w - s},${r + s} L${w - s},${h - s - c} Q${w - s},${h - s} ${w - s - c},${h - s} L${s + c},${h - s} Q${s},${h - s} ${s},${h - s - c} Z`);
+  };
+  draw();
+  new ResizeObserver(draw).observe(svg);
+  if (!calmMotion()) svg.classList.add('is-drawing');
+})();
+
+// the rating counts up once, as the card arrives
+(function counters() {
+  const els = [...document.querySelectorAll('[data-count]')];
+  if (!els.length || calmMotion()) return;
+  els.forEach(el => {
+    const to = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0), t0 = performance.now() + 700, dur = 1400;
+    el.textContent = (0).toFixed(dec);
+    const step = now => {
+      const k = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = (to * e).toFixed(dec);
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+})();
+
+// the band of praise: pauses on hover (CSS), with its own pause button (it moves longer than 5 s)
+(function ribbon() {
+  const band = document.querySelector('.ribbon');
+  if (!band) return;
+  const btn = band.querySelector('.ribbon__pause');
+  if (calmMotion()) { btn.hidden = true; return; }
+  btn.addEventListener('click', () => {
+    const paused = band.classList.toggle('is-paused');
+    btn.setAttribute('aria-pressed', String(paused));
+    const dict = lang === 'en' ? EN : ES;
+    btn.setAttribute('aria-label', paused ? (dict.rbPlay || ES.rbPlay) : (dict.rbPause || ES.rbPause));
+    btn.innerHTML = paused
+      ? '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z"/></svg>'
+      : '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg>';
+  });
+})();
+
+// a thin gold line in the header shows how far down the page you are
+(function progress() {
+  const bar = document.querySelector('.progress');
+  if (!bar) return;
+  let ticking = false;
+  const set = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(set); } }, { passive: true });
+  addEventListener('resize', set, { passive: true });
+  set();
 })();

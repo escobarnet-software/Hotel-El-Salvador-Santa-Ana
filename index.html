@@ -71,6 +71,7 @@
 </svg>
 
 <header class="nav nav--split">
+  <span class="progress" aria-hidden="true"></span>
   <p class="wrap preview-strip" data-i18n="strip">Vista previa · fotos y precios de ejemplo</p>
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
@@ -111,15 +112,15 @@
           </div>
         </div>
         <div class="hero-v3__stage">
-          <span class="hero-v3__outline" aria-hidden="true"></span>
+          <svg class="hero-v3__outline" aria-hidden="true"><path pathLength="1"/></svg>
           <figure class="hero-v3__media">
             <img src="assets/img/photo-f3136275-960.webp" srcset="assets/img/photo-f3136275-500.webp 500w, assets/img/photo-f3136275-960.webp 960w" sizes="(max-width: 1023px) 100vw, 58vw" width="960" height="720" alt="Jardín con césped, helechos, un sendero y una fuente al fondo" data-i18n-attr="alt:altFountain" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="jardín del hotel">
           </figure>
           <div class="hero-badge">
             <img class="hero-badge__mark" src="assets/brand/mark-52.webp" alt="" width="52" height="68">
             <div class="hero-badge__text">
-              <p class="hero-badge__score"><b>4.9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg class="star-90"><use href="#i-star"/></svg></span></p>
-              <p class="hero-badge__note" data-i18n="badgeNote">39 reseñas en Google</p>
+              <p class="hero-badge__score"><b data-count="4.9" data-decimals="1">4.9</b><span class="stars" aria-hidden="true"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg class="star-90"><use href="#i-star"/></svg></span></p>
+              <p class="hero-badge__note"><span data-count="39">39</span> <span data-i18n="badgeNote2">reseñas en Google</span></p>
             </div>
           </div>
         </div>
@@ -127,8 +128,22 @@
     </div>
   </section>
 
+  <!-- FRANJA: lo que destacan los huéspedes, desplazándose despacio (pausa al pasar el cursor, botón de pausa, quieta con movimiento reducido) -->
+  <div class="ribbon" role="region" aria-label="Lo que destacan los huéspedes" data-i18n-attr="aria-label:praiseTitle">
+    <div class="ribbon__track">
+      <ul class="ribbon__group">
+        <li>Hotel El Salvador</li><li data-i18n="rbCity">Santa Ana, El Salvador</li><li data-i18n="praiseGarden">El jardín</li><li data-i18n="praiseMural">El mural</li><li data-i18n="praiseCalm">Tranquilo y familiar</li><li data-i18n="rbRating">4.9 en Google</li>
+      </ul>
+      <ul class="ribbon__group" aria-hidden="true">
+        <li>Hotel El Salvador</li><li data-i18n="rbCity">Santa Ana, El Salvador</li><li data-i18n="praiseGarden">El jardín</li><li data-i18n="praiseMural">El mural</li><li data-i18n="praiseCalm">Tranquilo y familiar</li><li data-i18n="rbRating">4.9 en Google</li>
+      </ul>
+    </div>
+    <button class="ribbon__pause" type="button" aria-pressed="false" aria-label="Pausar la franja" data-i18n-attr="aria-label:rbPause"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg></button>
+  </div>
+
   <!-- PRECIOS: tarjetas blancas sobre la banda crema -->
   <section class="section v3 ground-surface" id="precios" aria-labelledby="precios-h">
+    <img class="band-mark band-mark--gold" src="assets/brand/mark.webp" alt="" width="246" height="323" aria-hidden="true" loading="lazy">
     <div class="wrap">
       <div class="v3-head reveal">
         <div>
@@ -309,6 +324,7 @@
 
 <footer class="footer-v3" id="contact">
   <div class="wrap">
+    <div class="footer-v3__ornament" aria-hidden="true"><span></span><img src="assets/brand/mark-52.webp" alt="" width="52" height="68"><span></span></div>
     <div class="footer-v3__grid">
       <div class="footer-v3__brand">
         <img src="assets/brand/logo-light-520.webp" alt="Logo de Hotel El Salvador, Santa Ana" data-i18n-attr="alt:altLogo" width="520" height="321" loading="lazy" decoding="async">
